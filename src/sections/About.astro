@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import portrait from '@assets/images/portrait.webp';
-import pfp from '@assets/images/pfp.webp';
+import pfp from '@assets/images/anon.webp';
 import Accordion from '@components/Accordion.astro';
 ---
 
@@ -17,13 +17,10 @@ import Accordion from '@components/Accordion.astro';
 				</p>
 
 				<p class="text" slot="content">
-					Hey, I'm Mikayil. You might also know me under my alias <a
-						target="_blank"
-						rel="noreferrer noopener"
-						href="https://x.com/raiku_dev">raiku</a
-					>. Born and raised in Germany, I've spent most of my life in
-					and around Frankfurt am Main. It's also the city where my
-					mother (Polish) and my father (Armenian/Turkish) met.
+					Hey, I'm Mikayil. Born and raised in Germany, I've spent
+					most of my life in and around Frankfurt am Main. It's also
+					the city where my mother (Polish) and my father
+					(Armenian/Turkish) met.
 				</p>
 			</Accordion>
 
@@ -173,7 +170,7 @@ import Accordion from '@components/Accordion.astro';
 
 		<div class="img-container animate right">
 			<Image src={portrait} alt="Mikayil Gacek" />
-			<Image src={pfp} alt="Mikayil Gacek's alias raiku" class="pfp" />
+			<Image src={pfp} alt="Mikayil Gacek" class="pfp" />
 		</div>
 	</div>
 </section>
