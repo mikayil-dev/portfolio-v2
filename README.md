@@ -61,6 +61,5 @@
 ## Misc. (optimizations, nice to have, etc.)
 - [x] ViewTransitions while navigating
 - [x] a11y to some extent
-- [ ] Custom Cursor ?
-- [ ] Analytics
+- [x] Analytics
 - [ ] Terminal on 404 page or as seperate section (?)
