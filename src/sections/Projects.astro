@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
 import External from '~icons/lucide/external-link';
-import Book from '~icons/lucide/book-text';
+// import Book from '~icons/lucide/book-text';
 import GitHub from '~icons/bytesize/github';
 
 const allProjects = await getCollection('projects');
@@ -55,14 +55,14 @@ const projects = allProjects.filter(project => project.data.highlight);
 								</a>
 							)}
 
-							<a
-								href={`/projects/${project.id}`}
-								class="main-button"
-								title="read about this project"
-							>
-								<Book />
-								Read
-							</a>
+							<!-- <a -->
+							<!-- 	href={`/projects/${project.id}`} -->
+							<!-- 	class="main-button" -->
+							<!-- 	title="read about this project" -->
+							<!-- > -->
+							<!-- 	<Book /> -->
+							<!-- 	Read -->
+							<!-- </a> -->
 
 							{project.data.githubLink && (
 								<a
