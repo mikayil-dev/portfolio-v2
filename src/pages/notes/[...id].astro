@@ -5,11 +5,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 
 export const getStaticPaths = (async () => {
-	const notes = await getCollection('notes');
-	return notes.map(note => ({
-		params: { id: note.id },
-		props: { note }
-	}));
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { id: note.id },
+    props: { note },
+  }));
 }) satisfies GetStaticPaths;
 
 const { note } = Astro.props;
@@ -17,46 +17,46 @@ const { Content, remarkPluginFrontmatter } = await render(note);
 ---
 
 <BaseLayout
-	title={note.data.title}
-	description={note.data.description}
-	ogImgSrc={note.data.cover}
-	ogImgAlt={note.data.coverAlt}
+  title={note.data.title}
+  description={note.data.description}
+  ogImgSrc={note.data.cover}
+  ogImgAlt={note.data.coverAlt}
 >
-	<article>
-		<h1>{note.data.title}</h1>
-		<div class="categories">
-			{
-				note.data.categories.map(c => (
-					<a href={`/notes/tags/${c.toLowerCase()}`} class="category">
-						{c}
-					</a>
-				))
-			}
-		</div>
-		<p class="date">
-			{
-				note.data.pubDate.toLocaleString('en-GB', {
-					day: '2-digit',
-					month: 'long',
-					year: 'numeric'
-				})
-			} | {remarkPluginFrontmatter.minutesRead}
-		</p>
-		{
-			note.data.cover && (
-				<div class="cover-container">
-					<Image src={note.data.cover} alt={note.data.coverAlt} />
-				</div>
-			)
-		}
-		<blockquote>{note.data.description}</blockquote>
-		<Content />
-	</article>
+  <article>
+    <h1>{note.data.title}</h1>
+    <div class="categories">
+      {
+        note.data.categories.map((c) => (
+          <a href={`/notes/tags/${c.toLowerCase()}`} class="category">
+            {c}
+          </a>
+        ))
+      }
+    </div>
+    <p class="date">
+      {
+        note.data.pubDate.toLocaleString('en-GB', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        })
+      } | {remarkPluginFrontmatter.minutesRead}
+    </p>
+    {
+      note.data.cover && (
+        <div class="cover-container">
+          <Image src={note.data.cover} alt={note.data.coverAlt} />
+        </div>
+      )
+    }
+    <blockquote>{note.data.description}</blockquote>
+    <Content />
+  </article>
 </BaseLayout>
 
 <style lang="scss">
-	// Styles are in BaseLayout
-	.date {
-		color: var(--gray);
-	}
+  // Styles are in BaseLayout
+  .date {
+    color: var(--gray);
+  }
 </style>

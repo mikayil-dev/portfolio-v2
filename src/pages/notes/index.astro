@@ -4,15 +4,15 @@ import PostContainer from '@components/PostContainer.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('notes')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <BaseLayout
-	title="All Notes"
-	description="Here you can find all my Notes about various topics, mostly study notes."
+  title="All Notes"
+  description="Here you can find all my Notes about various topics, mostly study notes."
 >
-	<PostContainer {posts}>
-		<Fragment slot="heading"> All Notes </Fragment>
-	</PostContainer>
+  <PostContainer {posts}>
+    <Fragment slot="heading"> All Notes </Fragment>
+  </PostContainer>
 </BaseLayout>

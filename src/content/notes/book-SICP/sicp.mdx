@@ -4,42 +4,46 @@ description: My notes on SICP by Harold Abelson and Gerald Jay Sussman with Juli
 pubDate: 2025-07-21
 categories: ['book', 'study']
 ---
+
 These notes may be a bit unstructured and wild at times - maybe even trivial.
 They are not meant to be a summary but rather a list of personal takeaways from each chapter.
 
 ## Foreword
-- *"It doesn't matter what the programs are about or what applications they serve. What does matter is how well they perform and how smoothly they fit with other programs in the creation of still greater programs."*
+
+- _"It doesn't matter what the programs are about or what applications they serve. What does matter is how well they perform and how smoothly they fit with other programs in the creation of still greater programs."_
 - Programs must be correct in every detail
 - Large programs grow from small ones - we should utilize proven idioms and combine these to form larger programs.
 - We can find modularity everywhere - smaller pieces and techniques forming the bigger product.
 - Strive for performance
-- *"Invent  and fit; have fits and reinvent!"* - Describing the nature the functional Lisp code that is filled with discretionary functions. (discretionary in German: 'nach eigenem Ermessen', describing the functions being implemented by an individual programmer based on his judgement)
+- _"Invent and fit; have fits and reinvent!"_ - Describing the nature the functional Lisp code that is filled with discretionary functions. (discretionary in German: 'nach eigenem Ermessen', describing the functions being implemented by an individual programmer based on his judgement)
 
 ## Preface
+
 - Programs are ever changing. Like this book. This is the second edition and it had to change to accommodate for the new ways and requirements of modern software engineering. It grew.
-- *"...a computer language is not just a way of getting a computer to perform operations but rather that it is a novel formal medium for expressing ideas about methodology. Thus, programs must be written for people to read, and only incidentally for machines to execute."*
+- _"...a computer language is not just a way of getting a computer to perform operations but rather that it is a novel formal medium for expressing ideas about methodology. Thus, programs must be written for people to read, and only incidentally for machines to execute."_
 - After this book I should be ready to read a 50 page long program and know what not to read and what I don't need to understand at any given moment while feeling secure about modifying the program and retaining the style of the original author.
 
 ## Acknowledgements
+
 - Note: Research Marvin Minsky
-- *"...computation provides means of expression for exploring ideas that would otherwise be too complex to deal with precisely."*
+- _"...computation provides means of expression for exploring ideas that would otherwise be too complex to deal with precisely."_
 - Programming is fun and one should support the joy of programming.
 
 ## Chapter 1: Building abstractions with procedures
+
 - Quote in the beginning
-	- Simple ideas combined into one complex idea
-	- Analyze two ideas separately and notice relations
-	- Separate ideas from every other accompanying them -> abstraction
+  - Simple ideas combined into one complex idea
+  - Analyze two ideas separately and notice relations
+  - Separate ideas from every other accompanying them -> abstraction
 - Compuational processes living in a computer evolve in a pattern of rules called a program and manipulate another abstract called data.
 - We conjure processes like a sorcerer with arcane spells and scripts composed in a program.
 - Anticipate the consequences of the conjuring (know what the program will do, avoid bugs, etc.)
 - Well designed computational systems, like automobiles, are deaigned in a modular manner so that they can be analyzed and debugged in isolation.
-- The Lisp programming language:
-	- has many dialects, in the book "Scheme"
-is used, ANSI standard is Common Lisp
-	- excellent for studying programming constructs, data structures and processes (called procedures in Lisp) which can be represented and manipulated as Lisp data
+- The Lisp programming language: - has many dialects, in the book "Scheme"
+  is used, ANSI standard is Common Lisp - excellent for studying programming constructs, data structures and processes (called procedures in Lisp) which can be represented and manipulated as Lisp data
 
 ### Chapter 1.1: The Elements of Programming
+
 - Programming languages serve as a framework within we organize our ideas about processes
 - The means provided by programming languages to achieve the above:
   - Primitive expressions - simplest entities the language is concerned with
@@ -49,11 +53,12 @@ is used, ANSI standard is Common Lisp
 - Procedures are descriptions of the rules for manipulating the data
 
 #### Chapter 1.1.1: Expresssions
+
 > "Every Lisp expression (called an s-expression) is written inside parentheses, where the first element is usually a function or operator, and the rest are its arguments." - ChatGPT (lol)
-- "You type an *expression*, and the interpreter responds by displaying the result of its *evaluating* that expression."
 
+- "You type an _expression_, and the interpreter responds by displaying the result of its _evaluating_ that expression."
 
-```lisp 
+```lisp
 ; Primitive expression presented
 468
 
@@ -62,8 +67,8 @@ is used, ANSI standard is Common Lisp
 ```
 
 ```lisp
-; Expressions represeting numbers combined 
-; with expression representing primitive procedure  
+; Expressions represeting numbers combined
+; with expression representing primitive procedure
 (+ 137 349)
 ;(operator operand operand)
 
@@ -71,6 +76,6 @@ is used, ANSI standard is Common Lisp
 486
 ```
 
-- Expressions formed by delimiting a list of expressions in parentheses are called ***combinations***.
-- The first element is called the ***operator***, the elements following are called ***operands***.
+- Expressions formed by delimiting a list of expressions in parentheses are called **_combinations_**.
+- The first element is called the **_operator_**, the elements following are called **_operands_**.
 - This kind of notation is called prefix notation and is different from the mathematical convention. The benefit is it can be supplied an arbitrary number of arguments easily.

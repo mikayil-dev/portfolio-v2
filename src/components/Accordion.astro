@@ -6,137 +6,137 @@ const textId = 'accText' + Math.floor(Math.random() * 999999);
 ---
 
 <script>
-	const accordions = document.querySelectorAll('.accordion');
+  const accordions = document.querySelectorAll('.accordion');
 
-	accordions.forEach(accordion => {
-		const toggleBtn = accordion.querySelector('.toggle-btn');
-		const textContainer = accordion.querySelector('.text-wrapper');
+  accordions.forEach((accordion) => {
+    const toggleBtn = accordion.querySelector('.toggle-btn');
+    const textContainer = accordion.querySelector('.text-wrapper');
 
-		toggleBtn?.addEventListener('click', () => {
-			toggleBtn.setAttribute(
-				'aria-expanded',
-				(toggleBtn.getAttribute('aria-expanded') !== 'true').toString()
-			);
-			textContainer?.setAttribute(
-				'aria-hidden',
-				(toggleBtn.getAttribute('aria-expanded') !== 'true').toString()
-			);
-		});
-	});
+    toggleBtn?.addEventListener('click', () => {
+      toggleBtn.setAttribute(
+        'aria-expanded',
+        (toggleBtn.getAttribute('aria-expanded') !== 'true').toString(),
+      );
+      textContainer?.setAttribute(
+        'aria-hidden',
+        (toggleBtn.getAttribute('aria-expanded') !== 'true').toString(),
+      );
+    });
+  });
 </script>
 
 <div class="accordion">
-	<button
-		type="button"
-		class="toggle-btn"
-		id={btnId}
-		aria-controls={textId}
-		aria-expanded="false"
-	>
-		<Chevron />
-		<slot name="title" />
-	</button>
+  <button
+    type="button"
+    class="toggle-btn"
+    id={btnId}
+    aria-controls={textId}
+    aria-expanded="false"
+  >
+    <Chevron />
+    <slot name="title" />
+  </button>
 
-	<div
-		class="text-wrapper"
-		id={textId}
-		aria-labelledby={btnId}
-		aria-hidden="true"
-	>
-		<div class="text-inner">
-			<slot name="content" />
-		</div>
-	</div>
+  <div
+    class="text-wrapper"
+    id={textId}
+    aria-labelledby={btnId}
+    aria-hidden="true"
+  >
+    <div class="text-inner">
+      <slot name="content" />
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
-	.accordion {
-		width: 100%;
-		border-bottom: 2px solid var(--primary);
+  .accordion {
+    width: 100%;
+    border-bottom: 2px solid var(--primary);
 
-		.toggle-btn {
-			width: 100%;
-			display: flex;
-			gap: 12px;
+    .toggle-btn {
+      width: 100%;
+      display: flex;
+      gap: 12px;
 
-			&[aria-expanded='true'] {
-				:global(svg) {
-					transform: rotate(180deg);
-				}
-			}
+      &[aria-expanded='true'] {
+        :global(svg) {
+          transform: rotate(180deg);
+        }
+      }
 
-			:global(svg) {
-				transition: 0.2s;
-				margin-top: 0.7em;
-				color: var(--primary);
-				height: 32px;
-				min-width: 32px;
-			}
+      :global(svg) {
+        transition: 0.2s;
+        margin-top: 0.7em;
+        color: var(--primary);
+        height: 32px;
+        min-width: 32px;
+      }
 
-			:global(p) {
-				text-align: start;
-				width: fit-content;
-				width: 100%;
-				padding: 16px 0;
-				@include font-heading;
-				color: var(--white);
-				font-weight: 900;
-			}
-		}
+      :global(p) {
+        text-align: start;
+        width: fit-content;
+        width: 100%;
+        padding: 16px 0;
+        @include font-heading;
+        color: var(--white);
+        font-weight: 900;
+      }
+    }
 
-		.text-wrapper {
-			display: grid;
-			grid-template-rows: 0fr;
-			transition: 0.2s;
+    .text-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: 0.2s;
 
-			&[aria-hidden='false'] {
-				grid-template-rows: 1fr;
+      &[aria-hidden='false'] {
+        grid-template-rows: 1fr;
 
-				.text-inner {
-					padding: 0 16px 16px calc(32px + 12px);
+        .text-inner {
+          padding: 0 16px 16px calc(32px + 12px);
 
-					@include view-mobile {
-						padding: 0 16px 16px;
-					}
-				}
-			}
+          @include view-mobile {
+            padding: 0 16px 16px;
+          }
+        }
+      }
 
-			.text-inner {
-				padding: 0 calc(32px + 12px);
-				overflow: hidden;
-				transition: 0.2s;
+      .text-inner {
+        padding: 0 calc(32px + 12px);
+        overflow: hidden;
+        transition: 0.2s;
 
-				@include view-mobile {
-					padding: 0 16px;
-				}
+        @include view-mobile {
+          padding: 0 16px;
+        }
 
-				:global(a) {
-					color: var(--primary);
-					transition: 0.2s;
-					position: relative;
+        :global(a) {
+          color: var(--primary);
+          transition: 0.2s;
+          position: relative;
 
-					&::after {
-						content: '';
-						position: absolute;
-						bottom: 0;
-						left: 0;
-						width: 0%;
-						height: 2px;
-						border-radius: 50px;
-						background-color: var(--white);
-						transition: 0.3s;
-					}
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            border-radius: 50px;
+            background-color: var(--white);
+            transition: 0.3s;
+          }
 
-					@include hover {
-						gap: 12px;
-						color: var(--white);
+          @include hover {
+            gap: 12px;
+            color: var(--white);
 
-						&::after {
-							width: 100%;
-						}
-					}
-				}
-			}
-		}
-	}
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>

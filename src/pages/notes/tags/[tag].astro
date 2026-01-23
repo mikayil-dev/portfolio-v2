@@ -6,20 +6,20 @@ import PostContainer from '@components/PostContainer.astro';
 import { getCollection } from 'astro:content';
 
 export const getStaticPaths = (async () => {
-	const notes = await getCollection('notes');
-	const uniqueTags = [
-		...new Set(notes.map(note => note.data.categories).flat())
-	];
+  const notes = await getCollection('notes');
+  const uniqueTags = [
+    ...new Set(notes.map((note) => note.data.categories).flat()),
+  ];
 
-	return uniqueTags.map(tag => {
-		const filteredNotes = notes.filter(note =>
-			note.data.categories.includes(tag)
-		);
-		return {
-			params: { tag },
-			props: { notes: filteredNotes }
-		};
-	});
+  return uniqueTags.map((tag) => {
+    const filteredNotes = notes.filter((note) =>
+      note.data.categories.includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { notes: filteredNotes },
+    };
+  });
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.params;
@@ -27,19 +27,19 @@ const { notes } = Astro.props;
 ---
 
 <BaseLayout
-	title={`#${tag} Notes`}
-	description={`All Notes marked with #${tag} on Mikayil's Dev Blog.`}
+  title={`#${tag} Notes`}
+  description={`All Notes marked with #${tag} on Mikayil's Dev Blog.`}
 >
-	<PostContainer posts={notes}>
-		<Fragment slot="heading">
-			Notes marked with <span>#{tag}</span>
-		</Fragment>
-	</PostContainer>
+  <PostContainer posts={notes}>
+    <Fragment slot="heading">
+      Notes marked with <span>#{tag}</span>
+    </Fragment>
+  </PostContainer>
 </BaseLayout>
 
 <style lang="scss">
-	span {
-		color: var(--primary);
-		text-decoration: underline;
-	}
+  span {
+    color: var(--primary);
+    text-decoration: underline;
+  }
 </style>

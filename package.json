@@ -1,31 +1,31 @@
 {
-	"name": "portfolio-v2",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro check && astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/check": "^0.9.6",
-		"@astrojs/mdx": "^4.3.13",
-		"@astrojs/node": "^9.5.2",
-		"@astrojs/rss": "^4.0.15",
-		"@astrojs/sitemap": "^3.7.0",
-		"astro": "^5.16.15",
-		"mdast-util-to-string": "^4.0.0",
-		"modern-normalize": "^3.0.1",
-		"reading-time": "^1.5.0",
-		"sass": "^1.89.1",
-		"typescript": "^5.8.3"
-	},
-	"devDependencies": {
-		"@iconify/json": "^2.2.352",
-		"prettier": "^3.5.3",
-		"prettier-plugin-astro": "^0.14.1",
-		"unplugin-icons": "^22.1.0",
-		"vite-plugin-devtools-json": "^0.1.1"
-	}
+  "name": "portfolio-v2",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/node": "^9.5.2",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.16.15",
+    "mdast-util-to-string": "^4.0.0",
+    "modern-normalize": "^3.0.1",
+    "reading-time": "^1.5.0",
+    "sass": "^1.89.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.352",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "unplugin-icons": "^22.1.0",
+    "vite-plugin-devtools-json": "^0.1.1"
+  }
 }

@@ -5,7 +5,7 @@ import defaultAuthorImg from 'src/assets/images/anon.webp';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-	post: CollectionEntry<'blogposts' | 'notes'>;
+  post: CollectionEntry<'blogposts' | 'notes'>;
 }
 
 const { post } = Astro.props;
@@ -13,225 +13,225 @@ const { post } = Astro.props;
 let postUrl: string;
 let tagUrl: string;
 if (post.collection === 'blogposts') {
-	postUrl = '/blog/posts';
-	tagUrl = '/blog/tags';
+  postUrl = '/blog/posts';
+  tagUrl = '/blog/tags';
 } else if (post.collection === 'notes') {
-	postUrl = '/notes';
-	tagUrl = '/notes/tags';
+  postUrl = '/notes';
+  tagUrl = '/notes/tags';
 } else {
-	throw new Error('Unknown Content Type');
+  throw new Error('Unknown Content Type');
 }
 ---
 
 <div class="post">
-	<a href={`${postUrl}/${post.id}`} class="img-container" title="read post">
-		<Image
-			src={post.data.cover ?? defaultPostCover}
-			alt={post.data.coverAlt ?? ''}
-		/>
-	</a>
+  <a href={`${postUrl}/${post.id}`} class="img-container" title="read post">
+    <Image
+      src={post.data.cover ?? defaultPostCover}
+      alt={post.data.coverAlt ?? ''}
+    />
+  </a>
 
-	<div class="text-container">
-		<p class="pubDate">
-			{
-				post.data.pubDate.toLocaleString('en-GB', {
-					dateStyle: 'long'
-				})
-			}
-		</p>
+  <div class="text-container">
+    <p class="pubDate">
+      {
+        post.data.pubDate.toLocaleString('en-GB', {
+          dateStyle: 'long',
+        })
+      }
+    </p>
 
-		<a class="heading" href={`${postUrl}/${post.id}`}>
-			<h3 transition:persist={post.data.title}>{post.data.title}</h3>
-		</a>
+    <a class="heading" href={`${postUrl}/${post.id}`}>
+      <h3 transition:persist={post.data.title}>{post.data.title}</h3>
+    </a>
 
-		<p class="description">{post.data.description}</p>
+    <p class="description">{post.data.description}</p>
 
-		<div class="categories">
-			{
-				post.data.categories.map(c => (
-					<a href={`${tagUrl}/${c.toLowerCase()}`} class="category">
-						{c}
-					</a>
-				))
-			}
-		</div>
+    <div class="categories">
+      {
+        post.data.categories.map((c) => (
+          <a href={`${tagUrl}/${c.toLowerCase()}`} class="category">
+            {c}
+          </a>
+        ))
+      }
+    </div>
 
-		{
-			post.collection === 'blogposts' && (
-				<p class="author">
-					<Image
-						src={post.data.author.img ?? defaultAuthorImg}
-						alt={post.data.author.name}
-					/>
-					{post.data.author.name}
-				</p>
-			)
-		}
-	</div>
+    {
+      post.collection === 'blogposts' && (
+        <p class="author">
+          <Image
+            src={post.data.author.img ?? defaultAuthorImg}
+            alt={post.data.author.name}
+          />
+          {post.data.author.name}
+        </p>
+      )
+    }
+  </div>
 </div>
 
 <style lang="scss">
-	.post {
-		display: flex;
-		flex-direction: column;
-		flex: 1 1 300px;
-		max-width: 350px;
-		border: 1px solid var(--primary);
-		border-radius: 8px;
-		overflow: hidden;
-		transition: border-color 0.2s;
-		box-shadow: 0 4px 10px #00000055;
+  .post {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 300px;
+    max-width: 350px;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    box-shadow: 0 4px 10px #00000055;
 
-		&:has(.heading:hover, .img-container:hover) {
-			@include hover {
-				border-color: var(--white);
+    &:has(.heading:hover, .img-container:hover) {
+      @include hover {
+        border-color: var(--white);
 
-				.img-container {
-					&::after {
-						opacity: 1;
-					}
-				}
+        .img-container {
+          &::after {
+            opacity: 1;
+          }
+        }
 
-				.text-container .heading h3 {
-					text-decoration-color: var(--primary);
-					text-decoration-thickness: 2px;
-				}
-			}
-		}
+        .text-container .heading h3 {
+          text-decoration-color: var(--primary);
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
 
-		.img-container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: auto;
-			aspect-ratio: 16/9;
-			overflow: hidden;
-			transition: 0.2s;
-			position: relative;
+    .img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      transition: 0.2s;
+      position: relative;
 
-			&::after {
-				@include font-heading;
-				content: 'Read';
-				color: var(--white);
-				display: flex;
-				text-shadow: 0 0 4px var(--background);
-				justify-content: center;
-				align-items: center;
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				pointer-events: none;
-				backdrop-filter: blur(4px) brightness(0.5);
-				opacity: 0;
-				transition: 0.2s;
-			}
+      &::after {
+        @include font-heading;
+        content: 'Read';
+        color: var(--white);
+        display: flex;
+        text-shadow: 0 0 4px var(--background);
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        backdrop-filter: blur(4px) brightness(0.5);
+        opacity: 0;
+        transition: 0.2s;
+      }
 
-			@include hover {
-				border-color: var(--white);
+      @include hover {
+        border-color: var(--white);
 
-				&::after {
-					opacity: 1;
-				}
-			}
+        &::after {
+          opacity: 1;
+        }
+      }
 
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: center;
-			}
-		}
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
 
-		.text-container {
-			display: flex;
-			flex-direction: column;
-			flex: 1 1 auto;
-			padding: 20px;
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      padding: 20px;
 
-			.pubDate {
-				margin-bottom: 12px;
-			}
+      .pubDate {
+        margin-bottom: 12px;
+      }
 
-			.pubDate,
-			.author,
-			.description {
-				font-size: 0.875rem;
-				color: var(--gray);
-			}
+      .pubDate,
+      .author,
+      .description {
+        font-size: 0.875rem;
+        color: var(--gray);
+      }
 
-			.heading {
-				width: fit-content;
+      .heading {
+        width: fit-content;
 
-				h3 {
-					@include h6;
-					color: var(--white);
-					margin-bottom: 12px;
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 2;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					width: fit-content;
-					transition: 0.2s;
-					text-decoration: underline;
-					text-decoration-color: transparent;
-					text-underline-offset: 4px;
-					min-height: calc(2 * 1em * 1.4);
+        h3 {
+          @include h6;
+          color: var(--white);
+          margin-bottom: 12px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: fit-content;
+          transition: 0.2s;
+          text-decoration: underline;
+          text-decoration-color: transparent;
+          text-underline-offset: 4px;
+          min-height: calc(2 * 1em * 1.4);
 
           @media (max-width: 400px) {
             display: block;
             min-height: auto;
           }
-				}
-			}
+        }
+      }
 
-			.description {
-				color: var(--lightgray);
-				margin-bottom: 20px;
-			}
+      .description {
+        color: var(--lightgray);
+        margin-bottom: 20px;
+      }
 
-			.categories {
-				margin-top: auto;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 8px;
-				margin-bottom: 20px;
+      .categories {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
 
-				.category {
-					line-height: 1;
-					font-size: 0.8rem;
-					display: flex;
-					@include font-heading;
-					color: var(--primary);
-					text-decoration: underline;
-					transition: 0.2s;
+        .category {
+          line-height: 1;
+          font-size: 0.8rem;
+          display: flex;
+          @include font-heading;
+          color: var(--primary);
+          text-decoration: underline;
+          transition: 0.2s;
 
-					&::before {
-						content: '#';
-					}
+          &::before {
+            content: '#';
+          }
 
-					@include hover {
-						color: var(--white);
-						text-decoration-color: var(--white);
-					}
-				}
-			}
+          @include hover {
+            color: var(--white);
+            text-decoration-color: var(--white);
+          }
+        }
+      }
 
-			.author {
-				display: flex;
-				gap: 8px;
-				align-items: center;
+      .author {
+        display: flex;
+        gap: 8px;
+        align-items: center;
 
-				img {
-					height: 2em;
-					width: auto;
-					overflow: hidden;
-					border-radius: 50%;
-				}
-			}
-		}
-	}
+        img {
+          height: 2em;
+          width: auto;
+          overflow: hidden;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 </style>

@@ -4,252 +4,251 @@ import bg from '@assets/images/circuit.png';
 ---
 
 <script>
-	document.addEventListener('DOMContentLoaded', async () => {
-		const words = ['the web.', 'mobile.', 'people.', 'businesses.'];
-		const wordElement = document.querySelector('.hero .dynamic');
+  document.addEventListener('DOMContentLoaded', async () => {
+    const words = ['the web.', 'mobile.', 'people.', 'businesses.'];
+    const wordElement = document.querySelector('.hero .dynamic');
 
-		while (wordElement) {
-			for (const word of words) {
-				if (word === wordElement.textContent) continue;
+    while (wordElement) {
+      for (const word of words) {
+        if (word === wordElement.textContent) continue;
 
-				const currentWord = wordElement.textContent || '';
-				for (let j = 0; j < currentWord.length; j++) {
-					wordElement.textContent = currentWord.slice(
-						0,
-						currentWord.length - 1 - j
-					);
-					await wait(100);
-				}
+        const currentWord = wordElement.textContent || '';
+        for (let j = 0; j < currentWord.length; j++) {
+          wordElement.textContent = currentWord.slice(
+            0,
+            currentWord.length - 1 - j,
+          );
+          await wait(100);
+        }
 
-				for (let k = 0; k < word.length; k++) {
-					wordElement.textContent = word.slice(0, k + 1);
-					await wait(100);
-				}
-				await wait(2000);
-			}
-		}
-	});
+        for (let k = 0; k < word.length; k++) {
+          wordElement.textContent = word.slice(0, k + 1);
+          await wait(100);
+        }
+        await wait(2000);
+      }
+    }
+  });
 
-	async function wait(ms: number) {
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
+  async function wait(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 </script>
 
 <section class="hero" id="home">
-	<div class="bg-container">
-		<Image class="bg" src={bg} alt="" />
-		<div class="shine"></div>
-	</div>
+  <div class="bg-container">
+    <Image class="bg" src={bg} alt="" />
+    <div class="shine"></div>
+  </div>
 
-	<div class="content animate left">
-		<p class="tagline">Hi, my name is</p>
+  <div class="content animate left">
+    <p class="tagline">Hi, my name is</p>
 
-		<h1>
-			<span class="name"> MIKAYIL_GACEK() </span>
-			<span class="yellow">&lcub;</span>
-			<span class="nickname">// alias Miki</span>
+    <h1>
+      <span class="name"> MIKAYIL_GACEK() </span>
+      <span class="yellow">&lcub;</span>
+      <span class="nickname">// alias Miki</span>
 
-			<span class="subheading">
-				<span class="first-line"> I build things </span>
-				<span class="second-line">
-					for <span class="dynamic">the web.</span><span
-						class="cursor"></span>
-				</span>
-			</span>
-			<span class="yellow right-brace">&rcub;</span>
-		</h1>
+      <span class="subheading">
+        <span class="first-line"> I build things </span>
+        <span class="second-line">
+          for <span class="dynamic">the web.</span><span class="cursor"></span>
+        </span>
+      </span>
+      <span class="yellow right-brace">&rcub;</span>
+    </h1>
 
-		<p class="text">
-			<span> I'm a Full-Stack Developer specialized in </span>
-			<span> web-, software- and mobile development. </span>
-			<span> In it for the love of the craft and here to stay. </span>
-			<span> Obsessed with learning and getting better. </span>
-		</p>
-	</div>
+    <p class="text">
+      <span> I'm a Full-Stack Developer specialized in </span>
+      <span> web-, software- and mobile development. </span>
+      <span> In it for the love of the craft and here to stay. </span>
+      <span> Obsessed with learning and getting better. </span>
+    </p>
+  </div>
 </section>
 
 <style lang="scss">
-	.hero {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		min-height: 100vh;
-		min-height: 100svh;
-		counter-reset: line-number;
-		position: relative;
-		overflow: hidden;
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    counter-reset: line-number;
+    position: relative;
+    overflow: hidden;
 
-		.bg-container {
-			&::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 2;
-				background: radial-gradient(
-					ellipse at center,
-					transparent 0%,
-					var(--background) 80%
-				);
-			}
+    .bg-container {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 0%,
+          var(--background) 80%
+        );
+      }
 
-			.bg {
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-				z-index: 1;
-				filter: brightness(0) invert(1) brightness(0.3);
+      .bg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 1;
+        filter: brightness(0) invert(1) brightness(0.3);
 
-				@include view-tablet-s {
-					object-fit: cover;
-					object-position: center;
-				}
-			}
+        @include view-tablet-s {
+          object-fit: cover;
+          object-position: center;
+        }
+      }
 
-			.shine {
-				position: absolute;
-				top: 0;
-				left: -50%;
-				width: 200%;
-				height: 100%;
-				z-index: 1;
-				background: linear-gradient(
-					90deg,
-					rgba($color: #111111, $alpha: 1) 10%,
-					rgba($color: #111111, $alpha: 0.9) 35%,
-					rgba($color: #111111, $alpha: 0) 50%,
-					rgba($color: #111111, $alpha: 0.9) 65%,
-					rgba($color: #111111, $alpha: 1) 90%
-				);
-				animation: shine 3s ease-in-out infinite alternate;
-				mix-blend-mode: darken;
-			}
+      .shine {
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        z-index: 1;
+        background: linear-gradient(
+          90deg,
+          rgba($color: #111111, $alpha: 1) 10%,
+          rgba($color: #111111, $alpha: 0.9) 35%,
+          rgba($color: #111111, $alpha: 0) 50%,
+          rgba($color: #111111, $alpha: 0.9) 65%,
+          rgba($color: #111111, $alpha: 1) 90%
+        );
+        animation: shine 3s ease-in-out infinite alternate;
+        mix-blend-mode: darken;
+      }
 
-			@keyframes shine {
-				0% {
-					transform: translate3d(-25%, 0, 0);
-				}
-				100% {
-					transform: translate3d(25%, 0, 0);
-				}
-			}
-		}
+      @keyframes shine {
+        0% {
+          transform: translate3d(-25%, 0, 0);
+        }
+        100% {
+          transform: translate3d(25%, 0, 0);
+        }
+      }
+    }
 
-		.content {
-			position: relative;
-			z-index: 3;
-			padding-left: 2em;
-			text-shadow: 0 0 50px black;
-		}
+    .content {
+      position: relative;
+      z-index: 3;
+      padding-left: 2em;
+      text-shadow: 0 0 50px black;
+    }
 
-		.tagline,
-		.name,
-		.subheading .first-line,
-		.subheading .second-line,
-		.right-brace,
-		.text span {
-			position: relative;
+    .tagline,
+    .name,
+    .subheading .first-line,
+    .subheading .second-line,
+    .right-brace,
+    .text span {
+      position: relative;
 
-			&::before {
-				@include font-heading;
-				counter-increment: line-number;
-				content: counter(line-number);
-				font-size: 1rem;
-				position: absolute;
-				left: -2em;
-				top: 50%;
-				transform: translateY(-50%);
-				color: var(--darkgray);
-			}
-		}
+      &::before {
+        @include font-heading;
+        counter-increment: line-number;
+        content: counter(line-number);
+        font-size: 1rem;
+        position: absolute;
+        left: -2em;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--darkgray);
+      }
+    }
 
-		.tagline {
-			@include font-heading;
-			font-size: 1.25rem;
-			color: var(--primary);
-			margin-bottom: 0.5em;
+    .tagline {
+      @include font-heading;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.5em;
 
-			@include view-mobile {
-				font-size: 1rem;
-			}
-		}
+      @include view-mobile {
+        font-size: 1rem;
+      }
+    }
 
-		h1 {
-			font-weight: 900;
-			color: var(--white);
-			margin-bottom: 0.75em;
+    h1 {
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 0.75em;
 
-			@include view-tablet-s {
-				font-size: 2.8rem;
-			}
+      @include view-tablet-s {
+        font-size: 2.8rem;
+      }
 
-			@include view-tablet-s {
-				font-size: 2rem;
-			}
+      @include view-tablet-s {
+        font-size: 2rem;
+      }
 
-			.yellow {
-				color: var(--primary);
-			}
+      .yellow {
+        color: var(--primary);
+      }
 
-			.nickname {
-				display: block;
-				font-size: 1rem;
-				color: var(--gray);
-				line-height: 1;
-				margin-bottom: 1.2em;
-			}
+      .nickname {
+        display: block;
+        font-size: 1rem;
+        color: var(--gray);
+        line-height: 1;
+        margin-bottom: 1.2em;
+      }
 
-			.subheading {
-				display: block;
-				font-weight: 900;
-				color: var(--lightgray);
+      .subheading {
+        display: block;
+        font-weight: 900;
+        color: var(--lightgray);
 
-				@include view-tablet-s {
-					font-size: 2.8rem;
-				}
+        @include view-tablet-s {
+          font-size: 2.8rem;
+        }
 
-				@include view-tablet-s {
-					font-size: 2rem;
-				}
+        @include view-tablet-s {
+          font-size: 2rem;
+        }
 
-				@include view-mobile-s {
-					margin-bottom: 0.5em;
-				}
+        @include view-mobile-s {
+          margin-bottom: 0.5em;
+        }
 
-				.first-line,
-				.second-line {
-					display: block;
-					padding-left: 1em;
+        .first-line,
+        .second-line {
+          display: block;
+          padding-left: 1em;
 
-					@include view-mobile-s {
-						padding-left: 0.5em;
-					}
-				}
+          @include view-mobile-s {
+            padding-left: 0.5em;
+          }
+        }
 
-				.dynamic {
-					color: var(--primary);
-				}
-			}
-		}
+        .dynamic {
+          color: var(--primary);
+        }
+      }
+    }
 
-		.text {
-			font-family: 'Victor Mono';
-			max-width: 600px;
-			text-wrap: balance;
+    .text {
+      font-family: 'Victor Mono';
+      max-width: 600px;
+      text-wrap: balance;
 
-			span {
-				display: block;
+      span {
+        display: block;
 
-				&:nth-child(2) {
-					margin-bottom: 1.2em;
-				}
-			}
-		}
-	}
+        &:nth-child(2) {
+          margin-bottom: 1.2em;
+        }
+      }
+    }
+  }
 </style>

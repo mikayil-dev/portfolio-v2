@@ -4,46 +4,46 @@ import Post from '@components/Post.astro';
 
 const blogposts = await getCollection('blogposts');
 const latestPosts = blogposts
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <section class="last-blog-posts">
-	<h2 class="section-heading animate bottom">
-		Latest Posts
-		<a href="/blog" class="main-button">// see all</a>
-	</h2>
+  <h2 class="section-heading animate bottom">
+    Latest Posts
+    <a href="/blog" class="main-button">// see all</a>
+  </h2>
 
-	<div class="post-container animate bottom">
-		{
-			latestPosts.map((post, i) => (
-				<div class={`animate ${i ? (i === 1 ? '' : 'right') : 'left'}`}>
-					<Post {post} />
-				</div>
-			))
-		}
-	</div>
+  <div class="post-container animate bottom">
+    {
+      latestPosts.map((post, i) => (
+        <div class={`animate ${i ? (i === 1 ? '' : 'right') : 'left'}`}>
+          <Post {post} />
+        </div>
+      ))
+    }
+  </div>
 </section>
 
 <style lang="scss">
-	.last-blog-posts {
-		.section-heading {
-			display: flex;
-			align-items: center;
-			flex-wrap: wrap;
-			gap: 16px;
-			justify-content: space-between;
-		}
+  .last-blog-posts {
+    .section-heading {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+    }
 
-		.post-container {
-			display: flex;
-			justify-content: center;
-			gap: 28px;
-			flex-wrap: wrap;
+    .post-container {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
 
-			div {
-				display: flex;
-			}
-		}
-	}
+      div {
+        display: flex;
+      }
+    }
+  }
 </style>

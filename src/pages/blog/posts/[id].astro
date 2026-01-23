@@ -5,11 +5,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 
 export const getStaticPaths = (async () => {
-	const blogposts = await getCollection('blogposts');
-	return blogposts.map(post => ({
-		params: { id: post.id },
-		props: { post }
-	}));
+  const blogposts = await getCollection('blogposts');
+  return blogposts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
@@ -17,46 +17,46 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
 <BaseLayout
-	title={post.data.title}
-	description={post.data.description}
-	ogImgSrc={post.data.cover}
-	ogImgAlt={post.data.coverAlt}
+  title={post.data.title}
+  description={post.data.description}
+  ogImgSrc={post.data.cover}
+  ogImgAlt={post.data.coverAlt}
 >
-	<article>
-		<h1>{post.data.title}</h1>
-		<div class="categories">
-			{
-				post.data.categories.map(c => (
-					<a href={`/blog/tags/${c.toLowerCase()}`} class="category">
-						{c}
-					</a>
-				))
-			}
-		</div>
-		<p class="date">
-			{
-				post.data.pubDate.toLocaleString('en-GB', {
-					day: '2-digit',
-					month: 'long',
-					year: 'numeric'
-				})
-			} | {remarkPluginFrontmatter.minutesRead}
-		</p>
-		{
-			post.data.cover && (
-				<div class="cover-container">
-					<Image src={post.data.cover} alt={post.data.coverAlt} />
-				</div>
-			)
-		}
-		<blockquote>{post.data.description}</blockquote>
-		<Content />
-	</article>
+  <article>
+    <h1>{post.data.title}</h1>
+    <div class="categories">
+      {
+        post.data.categories.map((c) => (
+          <a href={`/blog/tags/${c.toLowerCase()}`} class="category">
+            {c}
+          </a>
+        ))
+      }
+    </div>
+    <p class="date">
+      {
+        post.data.pubDate.toLocaleString('en-GB', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        })
+      } | {remarkPluginFrontmatter.minutesRead}
+    </p>
+    {
+      post.data.cover && (
+        <div class="cover-container">
+          <Image src={post.data.cover} alt={post.data.coverAlt} />
+        </div>
+      )
+    }
+    <blockquote>{post.data.description}</blockquote>
+    <Content />
+  </article>
 </BaseLayout>
 
 <style lang="scss">
-	// Styles are in BaseLayout
-	.date {
-		color: var(--gray);
-	}
+  // Styles are in BaseLayout
+  .date {
+    color: var(--gray);
+  }
 </style>

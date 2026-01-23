@@ -3,242 +3,242 @@ import logo from '@assets/images/anon.webp';
 ---
 
 <script>
-	let lastWidth = 0;
-	const breakpoint = 840;
+  let lastWidth = 0;
+  const breakpoint = 840;
 
-	const navToggle = document.querySelector('header .mbt');
-	const nav = document.querySelector('header nav');
-	const navLinks = document.querySelectorAll('header nav a');
+  const navToggle = document.querySelector('header .mbt');
+  const nav = document.querySelector('header nav');
+  const navLinks = document.querySelectorAll('header nav a');
 
-	function toggleMenu() {
-		if (nav?.hasAttribute('hidden') && window.innerWidth <= breakpoint) {
-			document.body.style.overflow = 'hidden';
-			nav?.removeAttribute('hidden');
-			navToggle?.setAttribute('aria-expanded', 'true');
-		} else {
-			document.body.style.overflow = 'auto';
-			nav?.setAttribute('hidden', 'true');
-			navToggle?.setAttribute('aria-expanded', 'false');
-		}
-	}
+  function toggleMenu() {
+    if (nav?.hasAttribute('hidden') && window.innerWidth <= breakpoint) {
+      document.body.style.overflow = 'hidden';
+      nav?.removeAttribute('hidden');
+      navToggle?.setAttribute('aria-expanded', 'true');
+    } else {
+      document.body.style.overflow = 'auto';
+      nav?.setAttribute('hidden', 'true');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    }
+  }
 
-	function onResize() {
-		if (nav?.hasAttribute('hidden') || window.innerWidth > breakpoint) {
-			return;
-		}
+  function onResize() {
+    if (nav?.hasAttribute('hidden') || window.innerWidth > breakpoint) {
+      return;
+    }
 
-		if (lastWidth !== window.innerWidth && !nav?.hasAttribute('hidden')) {
-			lastWidth = window.innerWidth;
-			toggleMenu();
-		}
-	}
+    if (lastWidth !== window.innerWidth && !nav?.hasAttribute('hidden')) {
+      lastWidth = window.innerWidth;
+      toggleMenu();
+    }
+  }
 
-	window.addEventListener('resize', onResize);
-	document.addEventListener('DOMContentLoaded', () => {
-		if (window.innerWidth <= breakpoint) return;
-		nav?.removeAttribute('hidden');
-		navToggle?.setAttribute('aria-expanded', 'false');
-	});
+  window.addEventListener('resize', onResize);
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= breakpoint) return;
+    nav?.removeAttribute('hidden');
+    navToggle?.setAttribute('aria-expanded', 'false');
+  });
 
-	navToggle?.addEventListener('click', toggleMenu);
-	navLinks.forEach(link => {
-		link.addEventListener('click', () => {
-			document.body.style.overflow = 'auto';
-			nav?.setAttribute('hidden', 'true');
-			navToggle?.setAttribute('aria-expanded', 'false');
-		});
-	});
+  navToggle?.addEventListener('click', toggleMenu);
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      document.body.style.overflow = 'auto';
+      nav?.setAttribute('hidden', 'true');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
 
 <div class="header-placeholder"></div>
 
 <header id="header">
-	<a
-		href="/#home"
-		class={`logo-container ${Astro.url.pathname === '/' ? 'animate left' : ''}`}
-	>
-		<img src={logo.src} alt="Mikayil" />
-	</a>
+  <a
+    href="/#home"
+    class={`logo-container ${Astro.url.pathname === '/' ? 'animate left' : ''}`}
+  >
+    <img src={logo.src} alt="Mikayil" />
+  </a>
 
-	<nav
-		id="main-nav"
-		aria-label="Main"
-		hidden
-		class={Astro.url.pathname === '/' ? 'animate right' : ''}
-	>
-		<a href="/#home" title="To homepage">Home</a>
-		<a href="/blog" title="To my developer blog">Blog</a>
-		<a href="/#about" title="To the about section">About</a>
-		<a href="/#projects" title="To the projects section">Projects</a>
-		<a href="/now" title='To my "now"-page'>Now</a>
-	</nav>
+  <nav
+    id="main-nav"
+    aria-label="Main"
+    hidden
+    class={Astro.url.pathname === '/' ? 'animate right' : ''}
+  >
+    <a href="/#home" title="To homepage">Home</a>
+    <a href="/blog" title="To my developer blog">Blog</a>
+    <a href="/#about" title="To the about section">About</a>
+    <a href="/#projects" title="To the projects section">Projects</a>
+    <a href="/now" title='To my "now"-page'>Now</a>
+  </nav>
 
-	<button class="mbt" aria-controls="main-nav" aria-label="Open Main Menu">
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-		<span class="dot" aria-hidden="true"></span>
-	</button>
+  <button class="mbt" aria-controls="main-nav" aria-label="Open Main Menu">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+  </button>
 </header>
 
 <style lang="scss">
-	.header-placeholder {
-		height: 80px;
-	}
+  .header-placeholder {
+    height: 80px;
+  }
 
-	header {
-		display: flex;
-		position: fixed;
-		width: 100%;
-		top: 0;
-		left: 0;
-		padding: 12px 40px;
-		background-color: var(--header-bg);
-		justify-content: space-between;
-		align-items: center;
-		height: 80px;
-		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-		z-index: 10000;
+  header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 12px 40px;
+    background-color: var(--header-bg);
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
 
-		&::after {
-			z-index: -1;
-			position: absolute;
-			left: 0;
-			top: 0;
-			content: '';
-			width: 100%;
-			height: 80px;
-			backdrop-filter: blur(8px);
-		}
+    &::after {
+      z-index: -1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 100%;
+      height: 80px;
+      backdrop-filter: blur(8px);
+    }
 
-		.logo-container {
-			display: flex;
-			height: 100%;
-			width: auto;
-			aspect-ratio: 1;
-			justify-content: center;
-			align-items: center;
-			border-radius: 50%;
-			overflow: hidden;
-			box-shadow: 0 0 8px var(--black);
+    .logo-container {
+      display: flex;
+      height: 100%;
+      width: auto;
+      aspect-ratio: 1;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 8px var(--black);
 
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: center;
-			}
-		}
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
 
-		.mbt {
-			display: none;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 4px;
-			transition: 0.3s;
+    .mbt {
+      display: none;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      transition: 0.3s;
 
-			@include view-tablet-s {
-				display: grid;
-			}
+      @include view-tablet-s {
+        display: grid;
+      }
 
-			&[aria-expanded='true'] {
-				transform: rotateZ(180deg);
-				gap: 4px;
+      &[aria-expanded='true'] {
+        transform: rotateZ(180deg);
+        gap: 4px;
 
-				.dot {
-					&:nth-child(2),
-					&:nth-child(4),
-					&:nth-child(6),
-					&:nth-child(8) {
-						opacity: 0;
-					}
-				}
-			}
+        .dot {
+          &:nth-child(2),
+          &:nth-child(4),
+          &:nth-child(6),
+          &:nth-child(8) {
+            opacity: 0;
+          }
+        }
+      }
 
-			.dot {
-				display: block;
-				width: 6px;
-				height: 6px;
-				background-color: var(--primary);
-				border-radius: 50%;
-				overflow: hidden;
-				transition: 0.3s;
-			}
-		}
+      .dot {
+        display: block;
+        width: 6px;
+        height: 6px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+    }
 
-		nav {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			counter-reset: nav-link-counter;
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      counter-reset: nav-link-counter;
 
-			@include view-tablet-s {
-				padding: 40px;
-				position: fixed;
-				top: 80px;
-				right: -8px;
-				height: 100%;
-				flex-direction: column;
-				justify-content: flex-start;
-				align-items: flex-end;
-				background-color: var(--header-bg);
-				backdrop-filter: blur(8px);
-				box-shadow:
-					inset 0 8px 8px -8px rgba(0, 0, 0, 0.5),
-					0 8px 8px rgba(0, 0, 0, 0.5);
-				transition: 0.3s;
-				transform: translateX(0);
+      @include view-tablet-s {
+        padding: 40px;
+        position: fixed;
+        top: 80px;
+        right: -8px;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        background-color: var(--header-bg);
+        backdrop-filter: blur(8px);
+        box-shadow:
+          inset 0 8px 8px -8px rgba(0, 0, 0, 0.5),
+          0 8px 8px rgba(0, 0, 0, 0.5);
+        transition: 0.3s;
+        transform: translateX(0);
 
-				&[hidden] {
-					transform: translateX(100%);
-				}
-			}
+        &[hidden] {
+          transform: translateX(100%);
+        }
+      }
 
-			a {
-				padding: 10px;
-				text-transform: uppercase;
-				font-weight: bold;
-				position: relative;
-				transition: 0.3s;
-				@include font-heading;
+      a {
+        padding: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        position: relative;
+        transition: 0.3s;
+        @include font-heading;
 
-				@include hover {
-					color: var(--white);
+        @include hover {
+          color: var(--white);
 
-					&::after {
-						width: 100%;
-					}
-				}
+          &::after {
+            width: 100%;
+          }
+        }
 
-				&.active {
-					text-decoration: underline;
-				}
+        &.active {
+          text-decoration: underline;
+        }
 
-				&::before {
-					@include smallText;
-					@include font-heading;
-					font-weight: bold;
-					counter-increment: nav-link-counter;
-					content: counter(nav-link-counter) '.';
-					color: var(--primary);
-				}
+        &::before {
+          @include smallText;
+          @include font-heading;
+          font-weight: bold;
+          counter-increment: nav-link-counter;
+          content: counter(nav-link-counter) '.';
+          color: var(--primary);
+        }
 
-				&::after {
-					content: '';
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					width: 0%;
-					height: 2px;
-					border-radius: 50px;
-					background-color: var(--primary);
-					transition: 0.3s;
-				}
-			}
-		}
-	}
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0%;
+          height: 2px;
+          border-radius: 50px;
+          background-color: var(--primary);
+          transition: 0.3s;
+        }
+      }
+    }
+  }
 </style>

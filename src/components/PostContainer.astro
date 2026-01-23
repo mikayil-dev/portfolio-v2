@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 interface Props {
-	posts: CollectionEntry<'blogposts' | 'notes'>[];
+  posts: CollectionEntry<'blogposts' | 'notes'>[];
 }
 
 import Post from './Post.astro';
@@ -10,27 +10,27 @@ const { posts } = Astro.props;
 ---
 
 <section>
-	<h2 class="section-heading">
-		<slot name="heading" />
-	</h2>
-	<div class="post-container">
-		{posts.map(post => <Post {post} />)}
-	</div>
+  <h2 class="section-heading">
+    <slot name="heading" />
+  </h2>
+  <div class="post-container">
+    {posts.map((post) => <Post {post} />)}
+  </div>
 </section>
 
 <style lang="scss">
-	section {
-		h2 {
-			span {
-				color: var(--primary);
-				text-decoration: underline;
-			}
-		}
+  section {
+    h2 {
+      span {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
 
-		.post-container {
-			display: flex;
-			gap: 28px;
-			flex-wrap: wrap;
-		}
-	}
+    .post-container {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+  }
 </style>

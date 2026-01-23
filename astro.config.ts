@@ -12,33 +12,32 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://mikayil.dev',
-	prefetch: {
-		defaultStrategy: 'viewport',
-		prefetchAll: true
-	},
-	integrations: [mdx(), sitemap()],
-	markdown: {
-		remarkPlugins: [remarkReadingTime],
-		shikiConfig: {
-			theme: 'gruvbox-dark-hard'
-		}
-	},
-	vite: {
-		plugins: [
-			Icons({
-				compiler: 'astro'
-			}),
-			devtoolsJson()
-		],
-		css: {
-			preprocessorOptions: {
-				scss: {
-					api: 'modern-compiler',
-					additionalData: `@use "${join(currentDir, './src/assets/styles/mixins')}" as *;`
-				}
-			}
-		}
-	}
+  site: 'https://mikayil.dev',
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: true,
+  },
+  integrations: [mdx(), sitemap()],
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
+    shikiConfig: {
+      theme: 'gruvbox-dark-hard',
+    },
+  },
+  vite: {
+    plugins: [
+      Icons({
+        compiler: 'astro',
+      }),
+      devtoolsJson(),
+    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+          additionalData: `@use "${join(currentDir, './src/assets/styles/mixins')}" as *;`,
+        },
+      },
+    },
+  },
 });
-
