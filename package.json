@@ -9,12 +9,12 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.4",
-		"@astrojs/mdx": "^4.3.0",
-		"@astrojs/node": "^9.2.2",
-		"@astrojs/rss": "^4.0.12",
-		"@astrojs/sitemap": "^3.4.1",
-		"astro": "^5.9.0",
+		"@astrojs/check": "^0.9.6",
+		"@astrojs/mdx": "^4.3.13",
+		"@astrojs/node": "^9.5.2",
+		"@astrojs/rss": "^4.0.15",
+		"@astrojs/sitemap": "^3.7.0",
+		"astro": "^5.16.15",
 		"mdast-util-to-string": "^4.0.0",
 		"modern-normalize": "^3.0.1",
 		"reading-time": "^1.5.0",
