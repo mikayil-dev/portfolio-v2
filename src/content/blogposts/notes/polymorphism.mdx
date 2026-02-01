@@ -5,7 +5,7 @@ pubDate: 2024-01-01
 categories: ['note', 'study']
 ---
 
-Polymorphism is about writing code that can work with different kinds of objects through a **common** interface.
+Polymorphism is about writing code that can work with different kinds of objects through a **common** interface. The interface provides the "structure", the implementation happens in the class itself.
 
 ## Key ideas
 
@@ -21,13 +21,17 @@ Polymorphism is about writing code that can work with different kinds of objects
     <br />
     <br />
 - **Encapsulation (supporting concept):**
-  - Each class hides its internal details behind methods.
+  - Each class hides its internal details behind methods (e.g. private properties hidden behind getters and/or methods).
   - Polymorphism build on this: callers only care about _what_ a method does, not _how_ it does it.
 
 ### Example
 
 ```typescript
-class NpcMage {
+interface Npc {
+	move(x: number, y: number): [number, number];
+}
+
+class NpcMage implements Npc {
   /**
    * Move character on x/y axis by the amount passed in the params.
    * @param {number} x - Distance to move on the x axis
@@ -35,13 +39,13 @@ class NpcMage {
    *
    * @returns {[number, number]} An Array containing the new x/y axis positions.
    */
-  move(x, y): [number, number] {
+  move(x: number, y: number): [number, number] {
     this._teleport(x, y);
     return [this.#pos_x, this.#pos_y];
   }
 }
 
-class NpcSoldier {
+class NpcSoldier implements Npc {
   /**
    * Move character on x/y axis by the amount passed in the params.
    * @param {number} x - Distance to move on the x axis
