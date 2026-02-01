@@ -28,10 +28,6 @@ Polymorphism is about writing code that can work with different kinds of objects
 
 ```typescript
 interface Npc {
-  move(x: number, y: number): [number, number];
-}
-
-class NpcMage implements Npc {
   /**
    * Move character on x/y axis by the amount passed in the params.
    * @param {number} x - Distance to move on the x axis
@@ -39,6 +35,10 @@ class NpcMage implements Npc {
    *
    * @returns {[number, number]} An Array containing the new x/y axis positions.
    */
+  move(x: number, y: number): [number, number];
+}
+
+class NpcMage implements Npc {
   move(x: number, y: number): [number, number] {
     this._teleport(x, y);
     return [this.#pos_x, this.#pos_y];
@@ -46,13 +46,6 @@ class NpcMage implements Npc {
 }
 
 class NpcSoldier implements Npc {
-  /**
-   * Move character on x/y axis by the amount passed in the params.
-   * @param {number} x - Distance to move on the x axis
-   * @param {number} y - Distance to move on the y axis
-   *
-   * @returns {[number, number]} An Array containing the new x/y axis positions.
-   */
   move(x, y): [number, number] {
     this._walk(x, y);
     return [this.#pos_x, this.#pos_y];
