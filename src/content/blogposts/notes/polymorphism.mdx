@@ -1,0 +1,61 @@
+---
+title: '[NOTE] Polymorphism'
+description: Notes on polymorphism in programming
+pubDate: 2024-01-01
+categories: ['note', 'study']
+---
+
+Polymorphism is about writing code that can work with different kinds of objects through a **common** interface.
+
+## Key ideas
+
+- **Classes and methods:**
+  - A class bundles data (attributes) and behavior (methods).
+  - Different classes can define methods with the same name but different internal details. (Function signature is identical, although implementation differs.)
+    <br />
+    <br />
+- **Polymorphism ("many forms"):**
+  - Writing code that expects an object with a certain method (like .move(), .process(), .getById()), not a specific class.
+  - Any object that provides the expected method can be used in that place.
+  - This often removes the need for long chains of if/else checks.
+    <br />
+    <br />
+- **Encapsulation (supporting concept):**
+  - Each class hides its internal details behind methods.
+  - Polymorphism build on this: callers only care about _what_ a method does, not _how_ it does it.
+
+### Example
+
+```typescript
+class NpcMage {
+  /**
+   * Move character on x/y axis by the amount passed in the params.
+   * @param {number} x - Distance to move on the x axis
+   * @param {number} y - Distance to move on the y axis
+   *
+   * @returns {[number, number]} An Array containing the new x/y axis positions.
+   */
+  move(x, y): [number, number] {
+    this._teleport(x, y);
+    return [this.#pos_x, this.#pos_y];
+  }
+}
+
+class NpcSoldier {
+  /**
+   * Move character on x/y axis by the amount passed in the params.
+   * @param {number} x - Distance to move on the x axis
+   * @param {number} y - Distance to move on the y axis
+   *
+   * @returns {[number, number]} An Array containing the new x/y axis positions.
+   */
+  move(x, y): [number, number] {
+    this._walk(x, y);
+    return [this.#pos_x, this.#pos_y];
+  }
+}
+```
+
+In this case we don't need to care about the internals as the caller of the function.
+We know that we want the character to move on the board/field and therefore call the move() method.
+How the character moves doesn't matter.
