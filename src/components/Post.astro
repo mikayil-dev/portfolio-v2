@@ -5,22 +5,13 @@ import defaultAuthorImg from 'src/assets/images/anon.webp';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  post: CollectionEntry<'blogposts' | 'notes'>;
+  post: CollectionEntry<'blogposts'>;
 }
 
 const { post } = Astro.props;
 
-let postUrl: string;
-let tagUrl: string;
-if (post.collection === 'blogposts') {
-  postUrl = '/blog/posts';
-  tagUrl = '/blog/tags';
-} else if (post.collection === 'notes') {
-  postUrl = '/notes';
-  tagUrl = '/notes/tags';
-} else {
-  throw new Error('Unknown Content Type');
-}
+const postUrl: string = '/blog/posts';
+const tagUrl: string = '/blog/tags';
 ---
 
 <div class="post">

@@ -5,29 +5,30 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 
 export const getStaticPaths = (async () => {
-  const notes = await getCollection('notes');
-  return notes.map((note) => ({
-    params: { id: note.id },
-    props: { note },
+  const blogposts = await getCollection('blogposts');
+  blogposts.forEach((post) => console.log(post));
+  return blogposts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
   }));
 }) satisfies GetStaticPaths;
 
-const { note } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(note);
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
 <BaseLayout
-  title={note.data.title}
-  description={note.data.description}
-  ogImgSrc={note.data.cover}
-  ogImgAlt={note.data.coverAlt}
+  title={post.data.title}
+  description={post.data.description}
+  ogImgSrc={post.data.cover}
+  ogImgAlt={post.data.coverAlt}
 >
   <article>
-    <h1>{note.data.title}</h1>
+    <h1>{post.data.title}</h1>
     <div class="categories">
       {
-        note.data.categories.map((c) => (
-          <a href={`/notes/tags/${c.toLowerCase()}`} class="category">
+        post.data.categories.map((c) => (
+          <a href={`/blog/tags/${c.toLowerCase()}`} class="category">
             {c}
           </a>
         ))
@@ -35,7 +36,7 @@ const { Content, remarkPluginFrontmatter } = await render(note);
     </div>
     <p class="date">
       {
-        note.data.pubDate.toLocaleString('en-GB', {
+        post.data.pubDate.toLocaleString('en-GB', {
           day: '2-digit',
           month: 'long',
           year: 'numeric',
@@ -43,13 +44,13 @@ const { Content, remarkPluginFrontmatter } = await render(note);
       } | {remarkPluginFrontmatter.minutesRead}
     </p>
     {
-      note.data.cover && (
+      post.data.cover && (
         <div class="cover-container">
-          <Image src={note.data.cover} alt={note.data.coverAlt} />
+          <Image src={post.data.cover} alt={post.data.coverAlt} />
         </div>
       )
     }
-    <blockquote>{note.data.description}</blockquote>
+    <blockquote>{post.data.description}</blockquote>
     <Content />
   </article>
 </BaseLayout>
