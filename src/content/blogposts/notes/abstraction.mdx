@@ -1,0 +1,27 @@
+---
+title: '[NOTE] Abstraction'
+description: Notes on abstraction in programming
+pubDate: 2024-01-01
+categories: ['note', 'study']
+---
+
+Abstraction is about what we expose to the outside world, and what details we hide.
+
+## Key ideas
+
+- You present
+
+### Example
+
+```python
+class NpcMage:
+    def __init__(self, health_points):
+        self._hp = health_points
+        self._buff_multiplier = 1.0
+
+    def get_total_health(self):
+        """ Get total hp with buffs applied """
+        return self._health * self._buff_hp
+```
+
+In this case we don't care about the multiplier, only about the total health, which means we can abstract the calculation of the total HP away and hide it nicely behind a method.

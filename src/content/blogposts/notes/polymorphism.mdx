@@ -26,33 +26,32 @@ Polymorphism is about writing code that can work with different kinds of objects
 
 ### Example
 
-```typescript
-interface Npc {
-  /**
-   * Move character on x/y axis by the amount passed in the params.
-   * @param {number} x - Distance to move on the x axis
-   * @param {number} y - Distance to move on the y axis
-   *
-   * @returns {[number, number]} An Array containing the new x/y axis positions.
-   */
-  move(x: number, y: number): [number, number];
-}
+```python
+class NpcMage:
+    def move(self, x, y) ->  tuple[int, int]:
+        """
+        Move character INSTANTLY on x/y axis by the amount passed in the params.
+        :param x: Distance to move on the x axis
+        :param y: Distance to move on the y axis
+        :return: A tuple containing the new x/y axis positions.
+        """
+        self._teleport(x, y)
+        return (self._pos_x, self._pos_y)
 
-class NpcMage implements Npc {
-  move(x: number, y: number): [number, number] {
-    this._teleport(x, y);
-    return [this.#pos_x, this.#pos_y];
-  }
-}
+class NpcSoldier:
+    def move(self, x, y) ->  tuple[int, int]:
+        """ Move character STEP BY STEP [...] """
+        self._walk(x, y)
+        return (self._pos_x, self._pos_y)
 
-class NpcSoldier implements Npc {
-  move(x, y): [number, number] {
-    this._walk(x, y);
-    return [this.#pos_x, this.#pos_y];
-  }
-}
+# Some other file
+orc = NpcSoldier(0, 0)
+elf = NpcMage(0, 0)
+entities = [orc, elf]
+for entity in entities:
+    entity.move(5, 7)
 ```
 
 In this case we don't need to care about the internals as the caller of the function.
 We know that we want the character to move on the board/field and therefore call the move() method.
-How the character moves doesn't matter.
+How the character moves doesn't matter as long as the method signature is identical.

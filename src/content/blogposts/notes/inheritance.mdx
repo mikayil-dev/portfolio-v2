@@ -1,0 +1,34 @@
+---
+title: '[NOTE] Inheritance'
+description: Notes on inheritance in programming
+pubDate: 2024-01-01
+categories: ['note', 'study']
+---
+
+```python
+# abc = abtract-base-class
+from abc import ABC, abstractmethod
+
+class Npc(ABC):
+    # A decorator that tells the interpreter,
+    # that the method must be implemented by the subclass.
+    @abstractmethod
+    def move(self, x, y) -> tuple[int, int]:
+        """
+        Move character on x/y axis by the amount passed in the params.
+        :param x: Distance to move on the x axis
+        :param y: Distance to move on the y axis
+        :return: A tuple containing the new x/y axis positions.
+        """
+        pass
+
+class NpcMage:
+    def move(self, x, y):
+        self._teleport(x, y)
+        return (self._pos_x, self._pos_y)
+
+class NpcSoldier:
+    def move(self, x, y):
+        self._walk(x, y)
+        return (self._pos_x, self._pos_y)
+```
