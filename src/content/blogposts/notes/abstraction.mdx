@@ -9,7 +9,9 @@ Abstraction is about what we expose to the outside world, and what details we hi
 
 ## Key ideas
 
-- You present
+- We present a nice easy to use interface to access information.
+- We hide messy or unimportant implementation details.
+- TV Remote: We see the buttons, but not the electronics inside.
 
 ### Example
 
@@ -24,4 +26,4 @@ class NpcMage:
         return self._health * self._buff_hp
 ```
 
-In this case we don't care about the multiplier, only about the total health, which means we can abstract the calculation of the total HP away and hide it nicely behind a method.
+In this case we don't care about the multiplier, only about the total health, which means we can abstract the calculation of the total HP away and hide it nicely behind a getter/method.
