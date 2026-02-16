@@ -7,15 +7,60 @@ import Twitch from '~icons/mdi/twitch';
 import Top from '~icons/lucide/arrow-up-from-line';
 ---
 
+<script>
+  const form = document.querySelector('#contact') as HTMLFormElement;
+  const formContainer = document.querySelector('footer .form-container');
+  const successAlert = document.querySelector('footer .alert-success');
+  const errorAlert = document.querySelector('footer .alert-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Honeypot check - if filled, silently reject
+    if (data.website) {
+      formContainer?.classList.add('hide');
+      successAlert?.classList.remove('hide');
+      return;
+    }
+    data.subject = 'Kontaktanfrage über Website';
+
+    const EMAIL_API_URL = 'https://email.pikcode.de/api/send';
+
+    try {
+      const response = await fetch(EMAIL_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        formContainer?.classList.add('hide');
+        successAlert?.classList.remove('hide');
+        errorAlert?.classList.add('hide');
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch {
+      errorAlert?.classList.remove('hide');
+      successAlert?.classList.add('hide');
+    }
+  });
+</script>
+
 <footer>
   <div
     class:list={['contact', { 'animate bottom': Astro.url.pathname === '/' }]}
   >
-    <h2>
+    <h2 class="animate left">
       <span> Want to work with me? </span>
 
       <button
-        class="main-button"
+        class="main-button animate right"
         title="Scroll back to top"
         onclick="window.scrollTo(0, 0);"
       >
@@ -25,11 +70,92 @@ import Top from '~icons/lucide/arrow-up-from-line';
     </h2>
 
     <div class="bottom">
-      <p class={Astro.url.pathname === '/' ? 'animate left' : ''}>
-        Shoot me a message anytime!<br />
-        I'm always open to discuss new opportunities, a full-time position or a potential
-        project.
-      </p>
+      <form id="contact">
+        <p
+          class:list={[
+            'top-text',
+            { 'animate right': Astro.url.pathname === '/' },
+          ]}
+        >
+          Shoot me a message anytime!<br />
+          I'm always open to discuss new opportunities, a full-time position or a
+          potential project.
+        </p>
+
+        <div class="form-container">
+          <div class="input-container">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              required
+              name="name"
+              id="name"
+              placeholder="John Doe"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              required
+              name="email"
+              id="email"
+              placeholder="john.doe@example.org"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="phone">Tel. (optional)</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              placeholder="+49 176 123123 01"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Your message"
+              rows="3"></textarea>
+          </div>
+
+          <div class="check-container">
+            <label for="privacy">
+              I consent to the processing of the information provided in this
+              contact form for the purpose of responding to my inquiry via
+              email.
+            </label>
+
+            <input type="checkbox" required name="privacy" id="privacy" />
+          </div>
+
+          <div class="website-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              autocomplete="off"
+              tabindex="-1"
+            />
+          </div>
+
+          <button class="main-button" type="submit">Send message</button>
+        </div>
+
+        <div class="alert-success hide">
+          <p>Thank you for your message! I'll get back to you shortly.</p>
+        </div>
+
+        <div class="alert-error hide">
+          <p>An error occured, please try again later.</p>
+        </div>
+      </form>
 
       <div
         class:list={['links', { 'animate right': Astro.url.pathname === '/' }]}
@@ -77,15 +203,19 @@ import Top from '~icons/lucide/arrow-up-from-line';
     </div>
   </div>
 
-  <div class="end-bar">
-    <p class="copyright">
-      &copy; {new Date().getFullYear()} Mikayil Gacek<span class="cursor"
-      ></span>
+  <div class="end-bar animate bottom">
+    <p class="copyright animate left">
+      &copy; {new Date().getFullYear()} Mikayil Gacek<span class="cursor">
+      </span>
     </p>
   </div>
 </footer>
 
 <style lang="scss">
+  .hide {
+    display: none !important;
+  }
+
   footer {
     width: 100%;
     max-width: var(--max-width);
@@ -143,12 +273,103 @@ import Top from '~icons/lucide/arrow-up-from-line';
         gap: 40px;
         justify-content: space-between;
 
-        @include view-mobile {
+        @include view-tablet-s {
           flex-wrap: wrap;
         }
 
-        p {
+        form {
+          display: flex;
+          gap: 24px;
+          flex-direction: column;
           max-width: 600px;
+
+          .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            width: 100%;
+
+            .input-container {
+              position: relative;
+              width: 100%;
+
+              label {
+                font-size: 0.85rem;
+                position: absolute;
+                top: 0;
+                left: 12px;
+                background-color: var(--background);
+                transform: translateY(-50%);
+                padding: 0 4px;
+              }
+
+              input,
+              textarea {
+                color: var(--text);
+                width: 100%;
+                border: 1px solid var(--primary);
+                border-radius: 8px;
+                padding: 12px;
+                background-color: var(--background);
+                resize: none;
+                line-height: 1.5;
+              }
+
+              button {
+                width: fit-content;
+              }
+            }
+
+            .check-container {
+              display: flex;
+              flex-direction: row-reverse;
+              align-items: flex-start;
+
+              input {
+                margin-top: 0.25rem;
+                margin-right: 8px;
+              }
+
+              label {
+                font-size: 0.8rem;
+                color: var(--gray);
+              }
+            }
+
+            .website-field {
+              position: absolute;
+              left: -9999px;
+              opacity: 0;
+              height: 0;
+              overflow: hidden;
+              pointer-events: none;
+            }
+          }
+
+          .alert-success,
+          .alert-error {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            line-height: 1.5;
+            text-align: center;
+          }
+
+          .alert-success {
+            background-color: #22c55e20;
+            border: 1px solid #22c55e;
+            color: #22c55e;
+          }
+
+          .alert-error {
+            background-color: #ef444420;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+          }
         }
 
         .links {
