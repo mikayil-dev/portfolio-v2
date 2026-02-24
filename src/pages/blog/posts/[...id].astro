@@ -6,7 +6,6 @@ import { Image } from 'astro:assets';
 
 export const getStaticPaths = (async () => {
   const blogposts = await getCollection('blogposts');
-  blogposts.forEach((post) => console.log(post));
   return blogposts.map((post) => ({
     params: { id: post.id },
     props: { post },
