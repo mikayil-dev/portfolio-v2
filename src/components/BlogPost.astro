@@ -47,17 +47,13 @@ const tagUrl: string = '/blog/tags';
       }
     </div>
 
-    {
-      post.collection === 'blogposts' && (
-        <p class="author">
-          <Image
-            src={post.data.author.img ?? defaultAuthorImg}
-            alt={post.data.author.name}
-          />
-          {post.data.author.name}
-        </p>
-      )
-    }
+    <p class="author">
+      <Image
+        src={post.data.author.img ?? defaultAuthorImg}
+        alt={post.data.author.name}
+      />
+      {post.data.author.name}
+    </p>
   </div>
 </div>
 

@@ -1,0 +1,84 @@
+---
+// TODO: WIP
+import { Image } from 'astro:assets';
+import defaultAuthorImg from 'src/assets/images/anon.webp';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blogposts'>;
+}
+
+const { post } = Astro.props;
+---
+
+<div class="post">
+  <div class="text-container">
+    <p class="author">
+      <Image
+        src={post.data.author.img ?? defaultAuthorImg}
+        alt={post.data.author.name}
+      />
+      {post.data.author.name}
+    </p>
+
+    <p class="pubDate">
+      {
+        post.data.pubDate.toLocaleString('en-GB', {
+          dateStyle: 'long',
+        })
+      }
+    </p>
+
+    <p class="description">{post.data.description}</p>
+  </div>
+</div>
+
+<style lang="scss">
+  .post {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 300px;
+    max-width: 350px;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    box-shadow: 0 4px 10px #00000055;
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      padding: 20px;
+
+      .pubDate {
+        margin-bottom: 12px;
+      }
+
+      .pubDate,
+      .author,
+      .description {
+        font-size: 0.875rem;
+        color: var(--gray);
+      }
+
+      .description {
+        color: var(--lightgray);
+      }
+
+      .author {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 12px;
+
+        img {
+          height: 2em;
+          width: auto;
+          overflow: hidden;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+</style>

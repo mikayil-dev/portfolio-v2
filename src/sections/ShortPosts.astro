@@ -1,6 +1,7 @@
 ---
+// TODO: WIP
 import { getCollection } from 'astro:content';
-import Post from '@components/BlogPost.astro';
+import Post from '@components/ShortPost.astro';
 
 const blogposts = await getCollection('blogposts');
 const latestPosts = blogposts
@@ -10,8 +11,7 @@ const latestPosts = blogposts
 
 <section class="last-blog-posts">
   <h2 class="section-heading animate bottom">
-    Blogposts
-    <a href="/blog" class="main-button">// see all</a>
+    Thoughts
   </h2>
 
   <div class="post-container animate bottom">
