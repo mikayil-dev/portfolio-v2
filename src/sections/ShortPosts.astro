@@ -1,36 +1,26 @@
 ---
 // TODO: WIP
-// import { getCollection } from 'astro:content';
-// import Post from '@components/ShortPost.astro';
+import { getCollection } from 'astro:content';
+import Post from '@components/ShortPost.astro';
 
-// const blogposts = await getCollection('blogposts');
-// const latestPosts = blogposts
-//   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-//   .slice(0, 3);
+const blogposts = await getCollection('blogposts');
+const latestPosts = blogposts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <section class="last-blog-posts">
   <h2 class="section-heading animate bottom">Thoughts</h2>
 
-  <!-- <div class="post-container animate bottom"> -->
-  <!--   { -->
-  <!--     latestPosts.map((post, i) => ( -->
-  <!--       <div class={`animate ${i ? (i === 1 ? '' : 'right') : 'left'}`}> -->
-  <!--         <Post {post} /> -->
-  <!--       </div> -->
-  <!--     )) -->
-  <!--   } -->
-  <!-- </div> -->
-  <a
-    class="twitter-timeline"
-    data-lang="en"
-    data-dnt="true"
-    data-theme="dark"
-    href="https://twitter.com/miki_devs?ref_src=twsrc%5Etfw"
-    >Tweets by miki_devs</a
-  >
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
-  ></script>
+  <div class="post-container animate bottom">
+    {
+      latestPosts.map((post, i) => (
+        <div class={`animate ${i ? (i === 1 ? '' : 'right') : 'left'}`}>
+          <Post {post} />
+        </div>
+      ))
+    }
+  </div>
 </section>
 
 <style lang="scss">
