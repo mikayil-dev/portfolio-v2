@@ -4,7 +4,6 @@ import mdx from '@astrojs/mdx';
 import { remarkReadingTime } from './src/plugins/readingTime';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import devtoolsJson from 'vite-plugin-devtools-json';
 import Icons from 'unplugin-icons/vite';
 import sitemap from '@astrojs/sitemap';
 
@@ -29,12 +28,10 @@ export default defineConfig({
       Icons({
         compiler: 'astro',
       }),
-      devtoolsJson(),
     ],
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern-compiler',
           additionalData: `@use "${join(currentDir, './src/assets/styles/mixins')}" as *;`,
         },
       },
