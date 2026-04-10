@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import defaultPostCover from 'src/assets/images/post.webp';
+// import defaultPostCover from 'src/assets/images/post.webp';
 import defaultAuthorImg from 'src/assets/images/anon.webp';
 import type { CollectionEntry } from 'astro:content';
 
@@ -15,12 +15,12 @@ const tagUrl: string = '/blog/tags';
 ---
 
 <div class="post">
-  <a href={`${postUrl}/${post.id}`} class="img-container" title="read post">
-    <Image
-      src={post.data.cover ?? defaultPostCover}
-      alt={post.data.coverAlt ?? ''}
-    />
-  </a>
+  <!-- <a href={`${postUrl}/${post.id}`} class="img-container" title="read post"> -->
+  <!--   <Image -->
+  <!--     src={post.data.cover ?? defaultPostCover} -->
+  <!--     alt={post.data.coverAlt ?? ''} -->
+  <!--   /> -->
+  <!-- </a> -->
 
   <div class="text-container">
     <p class="pubDate">
@@ -103,7 +103,6 @@ const tagUrl: string = '/blog/tags';
       position: relative;
 
       &::after {
-        @include font-heading;
         content: 'Read';
         color: var(--white);
         display: flex;
@@ -155,7 +154,6 @@ const tagUrl: string = '/blog/tags';
       .pubDate,
       .author,
       .description {
-        font-size: 0.875rem;
         color: var(--gray);
       }
 
@@ -201,7 +199,6 @@ const tagUrl: string = '/blog/tags';
           line-height: 1;
           font-size: 0.8rem;
           display: flex;
-          @include font-heading;
           color: var(--primary);
           text-decoration: underline;
           transition: 0.2s;

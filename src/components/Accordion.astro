@@ -85,7 +85,6 @@ const textId = 'accText' + Math.floor(Math.random() * 999999);
         width: fit-content;
         width: 100%;
         padding: 8px 0;
-        @include font-heading;
         color: var(--black);
         font-weight: 900;
       }
@@ -98,7 +97,6 @@ const textId = 'accText' + Math.floor(Math.random() * 999999);
 
       &[aria-hidden='false'] {
         grid-template-rows: 1fr;
-        border-top: 1px solid var(--color-line);
 
         .text-inner {
           padding: 0 16px 16px calc(32px + 12px);

@@ -45,7 +45,7 @@ import bg from '@assets/images/circuit.png';
     <p class="tagline">Hi, my name is</p>
 
     <h1>
-      <span class="name"> MIKAYIL_GACEK() </span>
+      <span class="name"> Mikayil_Gacek() </span>
       <span class="yellow">&lcub;</span>
       <span class="nickname">// alias Miki</span>
 
@@ -87,11 +87,6 @@ import bg from '@assets/images/circuit.png';
         width: 100%;
         height: 100%;
         z-index: 2;
-        background: radial-gradient(
-          ellipse at center,
-          transparent 0%,
-          var(--background) 82%
-        );
       }
 
       .bg {
@@ -110,40 +105,12 @@ import bg from '@assets/images/circuit.png';
           object-position: center;
         }
       }
-
-      .shine {
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 200%;
-        height: 100%;
-        z-index: 1;
-        background: linear-gradient(
-          90deg,
-          rgba(250, 247, 241, 0.95) 10%,
-          rgba(250, 247, 241, 0.74) 35%,
-          rgba(250, 247, 241, 0.08) 50%,
-          rgba(250, 247, 241, 0.74) 65%,
-          rgba(250, 247, 241, 0.95) 90%
-        );
-        animation: shine 3s ease-in-out infinite alternate;
-        mix-blend-mode: screen;
-      }
-
-      @keyframes shine {
-        0% {
-          transform: translate3d(-25%, 0, 0);
-        }
-        100% {
-          transform: translate3d(25%, 0, 0);
-        }
-      }
     }
 
     .content {
       position: relative;
       z-index: 3;
-      max-width: 760px;
+      max-width: 800px;
       padding: 48px 56px 44px;
       margin-left: 2em;
       border: 1px solid var(--color-line);
@@ -154,11 +121,11 @@ import bg from '@assets/images/circuit.png';
         var(--color-surface) 0%,
         var(--color-surface-elevated) 100%
       );
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(8px);
 
       @include view-mobile {
         margin-left: 0;
-        padding: 36px 24px 32px;
+        padding: 36px 20px 32px;
       }
     }
 
@@ -171,7 +138,6 @@ import bg from '@assets/images/circuit.png';
       position: relative;
 
       &::before {
-        @include font-heading;
         counter-increment: line-number;
         content: counter(line-number);
         font-size: 1rem;
@@ -181,11 +147,14 @@ import bg from '@assets/images/circuit.png';
         transform: translateY(-50%);
         color: var(--gray);
         opacity: 0.75;
+
+        @include view-mobile {
+          content: none;
+        }
       }
     }
 
     .tagline {
-      @include font-heading;
       font-size: 1.25rem;
       color: var(--primary);
       margin-bottom: 0.85em;

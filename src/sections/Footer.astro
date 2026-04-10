@@ -217,6 +217,7 @@ import Top from '~icons/lucide/arrow-up-from-line';
   }
 
   footer {
+    overflow: hidden;
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
@@ -290,7 +291,7 @@ import Top from '~icons/lucide/arrow-up-from-line';
             gap: 20px;
             align-items: flex-start;
             width: 100%;
-            padding: 28px;
+            padding: min(var(--section-padding), 28px);
             border: 1px solid var(--color-line);
             border-radius: calc(var(--radius-panel) + 4px);
             background: var(--color-surface);
@@ -308,6 +309,7 @@ import Top from '~icons/lucide/arrow-up-from-line';
                 background-color: var(--color-surface-strong);
                 transform: translateY(-50%);
                 padding: 0 6px;
+                border-radius: 18px;
                 color: var(--gray);
               }
 

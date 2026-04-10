@@ -102,6 +102,7 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     --color-line: rgba(91, 74, 54, 0.18);
     --color-line-strong: rgba(91, 74, 54, 0.22);
     --color-accent: #8f4f1d;
+    --color-accent-dark: #643731cc;
     --color-accent-strong: #6f3b12;
     --color-accent-soft: rgba(143, 79, 29, 0.12);
     --color-accent-soft-strong: rgba(143, 79, 29, 0.08);
@@ -133,11 +134,11 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     --yellow: var(--color-accent);
 
     @include view-tablet {
-      --section-padding: 80px 40px;
+      --section-padding: 40px;
     }
 
     @include view-mobile-s {
-      --section-padding: 40px 20px;
+      --section-padding: 20px;
       font-size: 14px;
     }
   }
@@ -156,6 +157,7 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     --color-accent-strong: #e39a5a;
     --color-accent-soft: rgba(196, 122, 59, 0.16);
     --color-accent-soft-strong: rgba(196, 122, 59, 0.12);
+    --color-accent-soft-stronger: rgba(196, 122, 59, 0.8);
     --color-accent-soft-border: rgba(196, 122, 59, 0.22);
     --color-accent-underline: rgba(196, 122, 59, 0.4);
     --color-surface-hover: rgba(255, 248, 240, 0.06);
@@ -275,8 +277,8 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
   }
 
   .main-button {
-    @include font-heading;
     display: flex;
+    text-transform: uppercase;
     align-items: center;
     gap: 8px;
     justify-content: center;
@@ -284,18 +286,19 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     padding: 12px 18px 11px;
     border-radius: var(--radius-pill);
     border: 1px solid transparent;
+    color: var(--white);
+    font-weight: 400;
+    box-shadow: var(--shadow-button);
+    line-height: 1;
     background: linear-gradient(
       135deg,
       var(--color-accent),
       var(--color-accent-strong)
     );
-    color: var(--white);
-    box-shadow: var(--shadow-button);
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease,
       filter 0.2s ease;
-    line-height: 1;
 
     @include hover {
       transform: translateY(-1px);
@@ -372,7 +375,8 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
   }
 
   article {
-    max-width: 1000px;
+    margin-top: 40px;
+    max-width: min(1000px, calc(100% - 40px));
     background: var(--color-surface);
     border: 1px solid var(--color-line);
     border-radius: calc(var(--radius-panel) + 4px);
@@ -435,7 +439,6 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
       .category {
         line-height: 1;
         display: flex;
-        @include font-heading;
         color: var(--primary);
         text-decoration: underline;
         transition: 0.2s;
