@@ -90,7 +90,7 @@ import bg from '@assets/images/circuit.png';
         background: radial-gradient(
           ellipse at center,
           transparent 0%,
-          var(--background) 80%
+          var(--background) 82%
         );
       }
 
@@ -103,7 +103,7 @@ import bg from '@assets/images/circuit.png';
         height: 100%;
         object-fit: contain;
         z-index: 1;
-        filter: brightness(0) invert(1) brightness(0.3);
+        filter: sepia(1) saturate(0.5) opacity(0.14);
 
         @include view-tablet-s {
           object-fit: cover;
@@ -120,14 +120,14 @@ import bg from '@assets/images/circuit.png';
         z-index: 1;
         background: linear-gradient(
           90deg,
-          rgba($color: #111111, $alpha: 1) 10%,
-          rgba($color: #111111, $alpha: 0.9) 35%,
-          rgba($color: #111111, $alpha: 0) 50%,
-          rgba($color: #111111, $alpha: 0.9) 65%,
-          rgba($color: #111111, $alpha: 1) 90%
+          rgba(250, 247, 241, 0.95) 10%,
+          rgba(250, 247, 241, 0.74) 35%,
+          rgba(250, 247, 241, 0.08) 50%,
+          rgba(250, 247, 241, 0.74) 65%,
+          rgba(250, 247, 241, 0.95) 90%
         );
         animation: shine 3s ease-in-out infinite alternate;
-        mix-blend-mode: darken;
+        mix-blend-mode: screen;
       }
 
       @keyframes shine {
@@ -143,8 +143,23 @@ import bg from '@assets/images/circuit.png';
     .content {
       position: relative;
       z-index: 3;
-      padding-left: 2em;
-      text-shadow: 0 0 50px black;
+      max-width: 760px;
+      padding: 48px 56px 44px;
+      margin-left: 2em;
+      border: 1px solid var(--color-line);
+      border-radius: calc(var(--radius-panel) + 8px);
+      box-shadow: var(--shadow-panel);
+      background: linear-gradient(
+        180deg,
+        var(--color-surface) 0%,
+        var(--color-surface-elevated) 100%
+      );
+      backdrop-filter: blur(12px);
+
+      @include view-mobile {
+        margin-left: 0;
+        padding: 36px 24px 32px;
+      }
     }
 
     .tagline,
@@ -164,7 +179,8 @@ import bg from '@assets/images/circuit.png';
         left: -2em;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--darkgray);
+        color: var(--gray);
+        opacity: 0.75;
       }
     }
 
@@ -172,7 +188,7 @@ import bg from '@assets/images/circuit.png';
       @include font-heading;
       font-size: 1.25rem;
       color: var(--primary);
-      margin-bottom: 0.5em;
+      margin-bottom: 0.85em;
 
       @include view-mobile {
         font-size: 1rem;
@@ -181,7 +197,7 @@ import bg from '@assets/images/circuit.png';
 
     h1 {
       font-weight: 900;
-      color: var(--white);
+      color: var(--black);
       margin-bottom: 0.75em;
 
       @include view-tablet-s {
@@ -238,9 +254,11 @@ import bg from '@assets/images/circuit.png';
     }
 
     .text {
-      font-family: 'Victor Mono';
+      font-family: var(--font-serif);
+      font-size: 1.0625rem;
       max-width: 600px;
       text-wrap: balance;
+      color: var(--gray);
 
       span {
         display: block;
@@ -248,6 +266,21 @@ import bg from '@assets/images/circuit.png';
         &:nth-child(2) {
           margin-bottom: 1.2em;
         }
+      }
+    }
+  }
+
+  :global(:root[data-theme='dark']) .hero {
+    .bg-container {
+      .shine {
+        background: linear-gradient(
+          90deg,
+          rgba(27, 22, 18, 0.96) 10%,
+          rgba(27, 22, 18, 0.78) 35%,
+          rgba(27, 22, 18, 0.12) 50%,
+          rgba(27, 22, 18, 0.78) 65%,
+          rgba(27, 22, 18, 0.96) 90%
+        );
       }
     }
   }

@@ -49,7 +49,7 @@
 
 // Fonts and typography
 @mixin font-copy {
-  font-family: 'Victor Mono';
+  font-family: var(--font-serif);
   color: var(--text);
 }
 
@@ -62,17 +62,15 @@
 @mixin copy {
   @include font-copy;
   font-style: normal;
-  font-weight: 800;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
 @mixin copy-s {
   @include font-copy;
   font-style: normal;
-  font-weight: 800;
   font-size: 0.875rem;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 @mixin h1 {
@@ -115,7 +113,7 @@
   @include font-heading;
   font-style: normal;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.75rem;
   line-height: 1.2;
   text-wrap: balance;
 
@@ -162,7 +160,6 @@
 @mixin smallText {
   @include font-copy;
   font-size: 0.8rem;
-  font-weight: normal;
   line-height: 1.2;
   font-style: normal;
 }
@@ -181,7 +178,7 @@
         font-weight: 800;
       }
 
-      >ul {
+      > ul {
         margin-top: 0.5rem;
       }
     }

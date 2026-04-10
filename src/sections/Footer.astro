@@ -229,7 +229,7 @@ import Top from '~icons/lucide/arrow-up-from-line';
       padding-left: 0;
       padding-right: 0;
       padding-bottom: 0;
-      border-top: 1px solid var(--primary);
+      border-top: 1px solid var(--color-line);
       margin-bottom: 60px;
 
       @include view-mobile {
@@ -282,6 +282,7 @@ import Top from '~icons/lucide/arrow-up-from-line';
           gap: 24px;
           flex-direction: column;
           max-width: 600px;
+          flex: 1 1 600px;
 
           .form-container {
             display: flex;
@@ -289,6 +290,11 @@ import Top from '~icons/lucide/arrow-up-from-line';
             gap: 20px;
             align-items: flex-start;
             width: 100%;
+            padding: 28px;
+            border: 1px solid var(--color-line);
+            border-radius: calc(var(--radius-panel) + 4px);
+            background: var(--color-surface);
+            box-shadow: var(--shadow-panel);
 
             .input-container {
               position: relative;
@@ -298,20 +304,19 @@ import Top from '~icons/lucide/arrow-up-from-line';
                 font-size: 0.85rem;
                 position: absolute;
                 top: 0;
-                left: 12px;
-                background-color: var(--background);
+                left: 14px;
+                background-color: var(--color-surface-strong);
                 transform: translateY(-50%);
-                padding: 0 4px;
+                padding: 0 6px;
+                color: var(--gray);
               }
 
               input,
               textarea {
                 color: var(--text);
                 width: 100%;
-                border: 1px solid var(--primary);
-                border-radius: 8px;
-                padding: 12px;
-                background-color: var(--background);
+                padding: 14px 16px;
+                background-color: var(--color-surface-strong);
                 resize: none;
                 line-height: 1.5;
               }
@@ -325,10 +330,10 @@ import Top from '~icons/lucide/arrow-up-from-line';
               display: flex;
               flex-direction: row-reverse;
               align-items: flex-start;
+              gap: 10px;
 
               input {
                 margin-top: 0.25rem;
-                margin-right: 8px;
               }
 
               label {
@@ -360,23 +365,25 @@ import Top from '~icons/lucide/arrow-up-from-line';
           }
 
           .alert-success {
-            background-color: #22c55e20;
-            border: 1px solid #22c55e;
-            color: #22c55e;
+            background-color: var(--color-success-soft);
+            border: 1px solid var(--green);
+            color: var(--green);
           }
 
           .alert-error {
-            background-color: #ef444420;
-            border: 1px solid #ef4444;
-            color: #ef4444;
+            background-color: var(--color-danger-soft);
+            border: 1px solid var(--red);
+            color: var(--red);
           }
         }
 
         .links {
-          padding: 12px 20px;
-          border: 1px solid var(--primary);
-          border-radius: 8px;
-          box-shadow: 0 4px 10px #00000055;
+          padding: 24px;
+          border: 1px solid var(--color-line);
+          border-radius: calc(var(--radius-panel) + 2px);
+          box-shadow: var(--shadow-panel);
+          background: var(--color-surface);
+          min-width: 220px;
 
           h3 {
             @include h4;
@@ -396,9 +403,19 @@ import Top from '~icons/lucide/arrow-up-from-line';
               font-size: 20px;
               transition: 0.2s;
               line-height: 1;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              width: 42px;
+              height: 42px;
+              border: 1px solid var(--color-line);
+              border-radius: 50%;
+              background: var(--color-surface-hover);
 
               @include hover {
                 color: var(--primary);
+                border-color: var(--color-accent-soft-border);
+                transform: translateY(-1px);
               }
             }
           }

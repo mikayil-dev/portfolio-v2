@@ -26,7 +26,68 @@ const finalTitle = title
 
   <title>{finalTitle}</title>
   <meta name="description" content={description} />
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#f6f2ea" />
+
+  <script is:inline>
+    (() => {
+      const storageKey = 'theme-preference';
+      const root = document.documentElement;
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const getStoredTheme = () => {
+        try {
+          const storedTheme = localStorage.getItem(storageKey);
+          return storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : null;
+        } catch {
+          return null;
+        }
+      };
+
+      const updateThemeColor = (theme) => {
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+          metaTheme.setAttribute(
+            'content',
+            theme === 'dark' ? '#16120f' : '#f6f2ea',
+          );
+        }
+      };
+
+      const resolveTheme = () =>
+        getStoredTheme() ?? (mediaQuery.matches ? 'dark' : 'light');
+
+      const applyTheme = (theme) => {
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        updateThemeColor(theme);
+        window.dispatchEvent(
+          new CustomEvent('themechange', { detail: { theme } }),
+        );
+      };
+
+      const setThemePreference = (theme) => {
+        try {
+          localStorage.setItem(storageKey, theme);
+        } catch {}
+
+        applyTheme(theme);
+      };
+
+      window.__theme = {
+        getTheme: () => (root.dataset.theme === 'dark' ? 'dark' : 'light'),
+        setThemePreference,
+      };
+
+      applyTheme(resolveTheme());
+
+      mediaQuery.addEventListener?.('change', (event) => {
+        if (getStoredTheme()) return;
+        applyTheme(event.matches ? 'dark' : 'light');
+      });
+    })();
+  </script>
 
   <!-- Open Graph tags -->
   <meta property="og:title" content={finalTitle} />

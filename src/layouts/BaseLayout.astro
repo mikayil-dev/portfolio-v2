@@ -66,7 +66,7 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     display: inline-block;
     width: 20px;
     height: 0.9em;
-    background-color: var(--white);
+    background-color: var(--primary);
     transform: translateY(0.1em);
     animation: blink-animation 1s infinite;
   }
@@ -77,19 +77,60 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     --section-padding: 80px;
     --max-width: 1280px;
     --header-height: 80px;
+    --radius-panel: 18px;
+    --radius-control: 12px;
+    --radius-pill: 999px;
+    --shadow-panel: 0 20px 50px rgba(62, 37, 16, 0.12);
+    --shadow-panel-soft: 0 10px 24px rgba(62, 37, 16, 0.08);
+    --shadow-elevated: 0 18px 36px rgba(62, 37, 16, 0.11);
+    --shadow-button: 0 10px 22px rgba(111, 59, 18, 0.18);
+    --shadow-button-hover: 0 14px 28px rgba(111, 59, 18, 0.22);
+    --shadow-focus: 0 0 0 3px rgba(143, 79, 29, 0.16);
+    --shadow-image: 0 16px 32px rgba(62, 37, 16, 0.14);
+    --shadow-header: 0 12px 30px rgba(62, 37, 16, 0.08);
+    --font-serif: 'Georgia', 'Iowan Old Style', 'Palatino Linotype', serif;
+    --font-mono: 'Victor Mono', 'SFMono-Regular', 'Menlo', monospace;
 
     // Colors
-    --primary: #bb9000;
-    --text: #cccccc;
-    --black: #111111;
-    --white: #ffffff;
-    --background: #111111;
-    --header-bg: #111111aa;
-    --lightgray: #aaaaaa;
-    --gray: #888888;
-    --darkgray: #272727;
-    --red: #ff5060;
-    --green: #66cc55;
+    --color-bg: #f6f2ea;
+    --color-bg-top: #faf7f1;
+    --color-bg-bottom: #efe7dc;
+    --color-surface: rgba(255, 252, 247, 0.92);
+    --color-surface-strong: #fffdf8;
+    --color-text: #22201a;
+    --color-text-muted: #655f55;
+    --color-line: rgba(91, 74, 54, 0.18);
+    --color-line-strong: rgba(91, 74, 54, 0.22);
+    --color-accent: #8f4f1d;
+    --color-accent-strong: #6f3b12;
+    --color-accent-soft: rgba(143, 79, 29, 0.12);
+    --color-accent-soft-strong: rgba(143, 79, 29, 0.08);
+    --color-accent-soft-border: rgba(143, 79, 29, 0.14);
+    --color-accent-underline: rgba(143, 79, 29, 0.35);
+    --color-surface-hover: rgba(255, 255, 255, 0.45);
+    --color-surface-elevated: rgba(255, 252, 247, 0.88);
+    --color-panel-highlight: rgba(255, 255, 255, 0.55);
+    --color-code-bg: rgba(34, 32, 26, 0.92);
+    --color-code-text: #f7efe1;
+    --color-bg-glow-top: rgba(143, 79, 29, 0.12);
+    --color-bg-glow-bottom: rgba(33, 87, 105, 0.1);
+    --color-danger: #a63024;
+    --color-success: #174f37;
+    --color-success-soft: rgba(23, 79, 55, 0.12);
+    --color-danger-soft: rgba(166, 48, 36, 0.12);
+
+    --primary: var(--color-accent);
+    --text: var(--color-text);
+    --black: #16120f;
+    --white: #fffaf3;
+    --background: var(--color-bg);
+    --header-bg: rgba(250, 247, 241, 0.78);
+    --lightgray: #7a7064;
+    --gray: var(--color-text-muted);
+    --darkgray: #e3d9cb;
+    --red: var(--color-danger);
+    --green: var(--color-success);
+    --yellow: var(--color-accent);
 
     @include view-tablet {
       --section-padding: 80px 40px;
@@ -99,6 +140,53 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
       --section-padding: 40px 20px;
       font-size: 14px;
     }
+  }
+
+  :root[data-theme='dark'] {
+    --color-bg: #16120f;
+    --color-bg-top: #1b1612;
+    --color-bg-bottom: #0f0c0a;
+    --color-surface: rgba(34, 28, 24, 0.88);
+    --color-surface-strong: #2a231e;
+    --color-text: #f2e9dc;
+    --color-text-muted: #bcae9d;
+    --color-line: rgba(210, 186, 161, 0.14);
+    --color-line-strong: rgba(210, 186, 161, 0.22);
+    --color-accent: #c47a3b;
+    --color-accent-strong: #e39a5a;
+    --color-accent-soft: rgba(196, 122, 59, 0.16);
+    --color-accent-soft-strong: rgba(196, 122, 59, 0.12);
+    --color-accent-soft-border: rgba(196, 122, 59, 0.22);
+    --color-accent-underline: rgba(196, 122, 59, 0.4);
+    --color-surface-hover: rgba(255, 248, 240, 0.06);
+    --color-surface-elevated: rgba(34, 28, 24, 0.76);
+    --color-panel-highlight: rgba(255, 255, 255, 0.04);
+    --color-code-bg: rgba(12, 10, 9, 0.95);
+    --color-code-text: #f6ead9;
+    --color-bg-glow-top: rgba(196, 122, 59, 0.14);
+    --color-bg-glow-bottom: rgba(74, 118, 128, 0.1);
+    --color-danger: #d06155;
+    --color-success: #6db08c;
+    --color-success-soft: rgba(109, 176, 140, 0.16);
+    --color-danger-soft: rgba(208, 97, 85, 0.16);
+    --shadow-panel: 0 24px 60px rgba(0, 0, 0, 0.35);
+    --shadow-panel-soft: 0 12px 30px rgba(0, 0, 0, 0.22);
+    --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.28);
+    --shadow-button: 0 12px 28px rgba(0, 0, 0, 0.28);
+    --shadow-button-hover: 0 16px 32px rgba(0, 0, 0, 0.34);
+    --shadow-focus: 0 0 0 3px rgba(196, 122, 59, 0.24);
+    --shadow-image: 0 18px 36px rgba(0, 0, 0, 0.34);
+    --shadow-header: 0 12px 30px rgba(0, 0, 0, 0.24);
+    --black: #f2e9dc;
+    --white: #fffaf3;
+    --background: var(--color-bg);
+    --header-bg: rgba(27, 22, 18, 0.78);
+    --lightgray: #c8baa8;
+    --gray: var(--color-text-muted);
+    --darkgray: #3a312b;
+    --red: var(--color-danger);
+    --green: var(--color-success);
+    --yellow: var(--color-accent);
   }
 
   * {
@@ -117,7 +205,24 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
   }
 
   body {
-    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-serif);
+    background:
+      radial-gradient(
+        circle at top left,
+        var(--color-bg-glow-top),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at bottom right,
+        var(--color-bg-glow-bottom),
+        transparent 25%
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-bg-top) 0%,
+        var(--color-bg-bottom) 100%
+      );
     min-height: 100vh;
     min-height: 100svh;
 
@@ -126,20 +231,47 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     }
 
     *:focus-visible {
-      outline: 2px dotted var(--yellow);
+      box-shadow: var(--shadow-focus);
+      outline: 2px solid transparent;
+      border-radius: 4px;
     }
   }
 
   a {
+    color: inherit;
     text-decoration: none;
   }
 
   button {
     cursor: pointer;
     border: none;
-    border-radius: 0;
+    border-radius: var(--radius-pill);
     appearance: none;
     background-color: transparent;
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-strong);
+    color: var(--text);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-panel);
+    backdrop-filter: blur(12px);
   }
 
   .main-button {
@@ -147,16 +279,28 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px 9px;
-    border-radius: 8px;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    transition: 0.2s;
+    justify-content: center;
+    width: fit-content;
+    padding: 12px 18px 11px;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent),
+      var(--color-accent-strong)
+    );
+    color: var(--white);
+    box-shadow: var(--shadow-button);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      filter 0.2s ease;
     line-height: 1;
 
     @include hover {
-      color: var(--white);
-      border-color: var(--white);
+      transform: translateY(-1px);
+      filter: saturate(1.05);
+      box-shadow: var(--shadow-button-hover);
     }
   }
 
@@ -171,6 +315,7 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
   .section-heading {
     font-weight: 900;
     margin-bottom: 40px;
+    color: var(--black);
   }
 
   h3 {
@@ -195,14 +340,18 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     @include copy;
   }
 
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+
   small {
     @include smallText;
   }
 
   strong {
-    font-weight: bold;
-    text-shadow: 0 0 1px var(--white);
-    color: var(--white);
+    font-weight: 700;
+    color: var(--black);
   }
 
   main {
@@ -224,6 +373,10 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
 
   article {
     max-width: 1000px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: calc(var(--radius-panel) + 4px);
+    box-shadow: var(--shadow-panel);
 
     > .cover-container {
       width: 100%;
@@ -231,8 +384,8 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
       img {
         width: 100%;
         height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px #00000055;
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow-image);
       }
     }
 
@@ -270,7 +423,8 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     a {
       color: var(--primary);
       text-decoration: underline;
-      text-underline-offset: 2px;
+      text-decoration-color: var(--color-accent-underline);
+      text-underline-offset: 3px;
     }
 
     .categories {
@@ -291,8 +445,8 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
         }
 
         @include hover {
-          color: var(--white);
-          text-decoration-color: var(--white);
+          color: var(--color-accent-strong);
+          text-decoration-color: var(--color-accent-strong);
         }
       }
     }
@@ -300,22 +454,25 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
     blockquote {
       padding: 20px;
       font-style: italic;
-      background-color: var(--darkgray);
+      background-color: var(--color-accent-soft-strong);
       border-left: 3px solid var(--primary);
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 var(--radius-control) var(--radius-control) 0;
       margin: 2em 0;
     }
 
     pre {
       padding: 20px;
-      border-radius: 8px;
-      border: 1px solid var(--primary);
+      border-radius: var(--radius-panel);
+      border: 1px solid var(--color-line-strong);
+      background: var(--color-code-bg);
+      color: var(--color-code-text);
+      box-shadow: inset 0 1px 0 var(--color-panel-highlight);
     }
 
     img {
       width: 100%;
       height: auto;
-      border-radius: 8px;
+      border-radius: var(--radius-panel);
     }
   }
 
