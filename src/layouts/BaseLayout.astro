@@ -425,6 +425,10 @@ const { title, description, ogImgSrc, ogImgAlt } = Astro.props;
       }
     }
 
+    p, a, ul, ol, li, blockquote {
+      @include copy-l;
+    }
+
     a {
       color: var(--primary);
       text-decoration: underline;

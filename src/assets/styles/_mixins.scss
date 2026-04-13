@@ -60,6 +60,13 @@
   line-height: 1.7;
 }
 
+@mixin copy-l {
+  @include font-copy;
+  font-style: normal;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
 @mixin copy-s {
   @include font-copy;
   font-style: normal;
