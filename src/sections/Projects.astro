@@ -120,10 +120,16 @@ const projects = allProjects.filter((project) => project.data.highlight);
           display: flex;
           justify-content: center;
           align-items: center;
+          max-height: calc(100% - 56px);
+          border: 2px solid var(--color-accent-soft-border-strong);
 
           @include view-tablet-s {
             position: static;
             width: 100%;
+          }
+
+          @include view-mobile {
+            max-height: none;
           }
 
           img {
@@ -131,7 +137,6 @@ const projects = allProjects.filter((project) => project.data.highlight);
             height: 100%;
             object-fit: cover;
             aspect-ratio: 16 / 10;
-            border-radius: calc(var(--radius-panel) + 6px);
             overflow: hidden;
           }
         }
